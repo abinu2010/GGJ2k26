@@ -17,15 +17,12 @@ public class EnemySpawnTrigger : MonoBehaviour
 
     readonly List<GameObject> aliveEnemies = new List<GameObject>();
 
-
     void OnTriggerEnter(Collider other)
     {
         if (finished) return;
         if (spawnOnce && started) return;
 
         if (other.GetComponentInParent<Health>() == null) return;
-        Debug.Log("Trigger hit");
-
 
         started = true;
         stepIndex = 0;
