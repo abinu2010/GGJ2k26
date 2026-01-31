@@ -370,7 +370,7 @@ MonoBehaviour:
   player: {fileID: 429806696}
   spawnPoint: {fileID: 266092951}
   enemyPrefabs:
-  - {fileID: 2753808879608724137, guid: ad7deac547356b246af45210f222780b, type: 3}
+  - {fileID: 4306794033120867019, guid: 0f379357c3e89664fb1deab42a2ff091, type: 3}
   totalToSpawn: 8
   timeBetweenSpawns: 0.7
   maxAliveAtOnce: 1
@@ -1926,6 +1926,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1936354094396189662, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2144844957058324514, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2051,10 +2055,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1031616111}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7235721458010227867, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-    - {fileID: 3694896575203689997, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-    - {fileID: 3861801688306201217, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
