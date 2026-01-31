@@ -581,6 +581,7 @@ MonoBehaviour:
   runSpeed: 15
   jumpForce: 7
   weaponManager: {fileID: 429806699}
+  mainCamera: {fileID: 1031616111}
 --- !u!23 &429806694
 MeshRenderer:
   m_ObjectHideFlags: 0
