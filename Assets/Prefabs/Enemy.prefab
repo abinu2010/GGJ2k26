@@ -174,11 +174,11 @@ MonoBehaviour:
   hitPoint: {fileID: 8591227691526451701}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 9
   engageRange: 5
-  hitRadius: 0.6
-  damage: 10
-  cooldown: 1.2
+  hitRadius: 3
+  damage: 2
+  cooldown: 4
 --- !u!114 &5932484732966179343
 MonoBehaviour:
   m_ObjectHideFlags: 0

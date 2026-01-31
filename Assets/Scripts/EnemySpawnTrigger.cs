@@ -17,6 +17,7 @@ public class EnemySpawnTrigger : MonoBehaviour
 
     readonly List<GameObject> aliveEnemies = new List<GameObject>();
 
+
     void OnTriggerEnter(Collider other)
     {
         if (finished) return;
