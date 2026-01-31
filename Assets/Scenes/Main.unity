@@ -424,7 +424,7 @@ MonoBehaviour:
     delayAfterSpawn: 0.6
     clearAliveListBeforeSpawn: 0
     spawns:
-    - prefab: {fileID: 4306794033120867019, guid: 0f379357c3e89664fb1deab42a2ff091, type: 3}
+    - prefab: {fileID: 2753808879608724137, guid: ad7deac547356b246af45210f222780b, type: 3}
       count: 8
       spawnPointStartIndex: 0
 --- !u!1 &266092950
@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 429806697}
   - component: {fileID: 429806698}
   - component: {fileID: 429806699}
+  - component: {fileID: 429806700}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -831,6 +832,19 @@ MonoBehaviour:
   bow: {fileID: 1506742509}
   wand: {fileID: 147610616}
   currentWeapon: {fileID: 0}
+--- !u!114 &429806700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429806691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901fddb4f9984e74ebb7530d98da1315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 100
 --- !u!1 &553348624
 GameObject:
   m_ObjectHideFlags: 0
