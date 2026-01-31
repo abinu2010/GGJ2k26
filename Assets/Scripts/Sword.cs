@@ -6,6 +6,8 @@ public class Sword : Weapon
     public Collider swordCollider;
     public float attackDuration = 0.2f;
 
+    public bool logHits = true;
+
     void Start()
     {
         if (swordCollider == null)
@@ -17,6 +19,17 @@ public class Sword : Weapon
         {
             swordCollider.enabled = false;
         }
+    }
+
+    void OnEnable()
+    {
+        if (swordCollider != null) swordCollider.enabled = false;
+    }
+
+    void OnDisable()
+    {
+        if (swordCollider != null) swordCollider.enabled = false;
+        StopAllCoroutines();
     }
 
     public override void Attack(Vector3 targetPosition)
@@ -42,6 +55,7 @@ public class Sword : Weapon
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         if (enemyHealth != null)
         {
+            if (logHits) Debug.Log("Sword hit: " + other.name + " damage=" + damage);
             enemyHealth.AddDamage(damage);
         }
     }

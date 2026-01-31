@@ -17,7 +17,7 @@ public class Bow : Weapon
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
-            GameObject arrow = Instantiate(arrowPrefab, firePoint.position, rotation);
+            GameObject arrow = Instantiate(arrowPrefab, firePoint.position + direction, rotation);
             Projectile projectile = arrow.GetComponent<Projectile>();
             if (projectile != null)
             {

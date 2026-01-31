@@ -175,7 +175,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 30
   dead: 0
-  logDamage: 1
+  logDamage: 0
 --- !u!114 &5711361398573018502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupPrefab: {fileID: 5673505882667900833, guid: 8a0b3000f4f67eb4ca3d1c2aca323bcf, type: 3}
   pieceId: 1
-  offset: {x: 0, y: 0.6, z: 0}
+  offset: {x: 4, y: 1, z: 0}
 --- !u!114 &4687562865480168941
 MonoBehaviour:
   m_ObjectHideFlags: 0

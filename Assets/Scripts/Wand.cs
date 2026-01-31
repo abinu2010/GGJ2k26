@@ -16,7 +16,7 @@ public class Wand : Weapon
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            GameObject fireball = Instantiate(fireballPrefab, firePoint.position, rotation);
+            GameObject fireball = Instantiate(fireballPrefab, firePoint.position + direction, rotation);
             Projectile projectile = fireball.GetComponent<Projectile>();
             if (projectile != null)
             {

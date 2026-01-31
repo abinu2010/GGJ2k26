@@ -198,6 +198,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &133410393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4278158027699768879, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+  m_PrefabInstance: {fileID: 4491755809392437556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &133410396 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1533987700716443917, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+  m_PrefabInstance: {fileID: 4491755809392437556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &133410399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133410393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89298ed2128957a4884ec8895c77a9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  swordCollider: {fileID: 133410396}
+  attackDuration: 0.2
+  logHits: 1
 --- !u!1 &149029752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,6 +2036,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2857593896444927756, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857593896444927756, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3994907117428782186, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_Name
       value: wandMesh
@@ -2017,6 +2051,10 @@ PrefabInstance:
     - target: {fileID: 4146872123068882572, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278158027699768879, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4695762015242145552, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2058,13 +2096,18 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1031616111}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4382365239011981977, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+    - {fileID: 6664271352627924205, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7235721458010227867, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
     - {fileID: 3694896575203689997, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
     - {fileID: 3861801688306201217, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4278158027699768879, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 133410399}
   m_SourcePrefab: {fileID: 100100000, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
