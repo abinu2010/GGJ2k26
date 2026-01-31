@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 6f;
     public float jumpForce = 7f;
     Rigidbody rb;
-    Animator animator;
+    public Animator animator;
     bool facingRight;
     bool isGrounded;
+
+
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+
             if (weaponManager.currentWeapon != null && mainCamera != null)
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
                     weaponManager.currentWeapon.GetComponent<Weapon>().Attack(worldMousePosition);
                 }
             }
+            
         }
     }
     void FixedUpdate()

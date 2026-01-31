@@ -5,9 +5,12 @@ public class Sword : Weapon
 {
     public Collider swordCollider;
     public float attackDuration = 0.2f;
-
+    
+    
     void Start()
     {
+       
+
         if (swordCollider == null)
         {
             swordCollider = GetComponent<Collider>();
@@ -31,6 +34,7 @@ public class Sword : Weapon
         swordCollider.enabled = true;
         yield return new WaitForSeconds(attackDuration);
         swordCollider.enabled = false;
+       
     }
 
     private void OnCollisionEnter(Collision collision)
