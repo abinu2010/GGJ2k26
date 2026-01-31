@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: e066d9894ac831442aad8d486aeb5ac3
+guid: 252e1e7eb23af8a4faabefe4ee8f525e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: midEnemy_Mat
+    second: {fileID: 2100000, guid: 81e5e67f9ad92664a835fde0e119998a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

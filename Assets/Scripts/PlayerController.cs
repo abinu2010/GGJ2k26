@@ -4,10 +4,15 @@ public class PlayerController : MonoBehaviour
 {
     public float runSpeed = 6f;
     public float jumpForce = 7f;
+
     Rigidbody rb;
-    Animator animator;
+    public Animator animator;
+
     bool facingRight;
     bool isGrounded;
+
+    public WeaponManager weaponManager;
+    public Camera mainCamera;
 
     void Start()
     {
@@ -15,9 +20,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         facingRight = true;
     }
-
-    public WeaponManager weaponManager;
-    public Camera mainCamera;
 
     void Update()
     {
@@ -30,21 +32,29 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (weaponManager.currentWeapon != null && mainCamera != null)
-            {
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                Plane gamePlane = new Plane(Vector3.forward, transform.position);
-                float distance;
+            if (weaponManager == null) return;
+            if (weaponManager.currentWeapon == null) return;
+            if (mainCamera == null) return;
 
-                if (gamePlane.Raycast(ray, out distance))
-                {
-                    Vector3 worldMousePosition = ray.GetPoint(distance);
-                    
-                    weaponManager.currentWeapon.GetComponent<Weapon>().Attack(worldMousePosition);
-                }
+            Weapon weapon = weaponManager.currentWeapon.GetComponentInChildren<Weapon>(true);
+            if (weapon == null)
+            {
+                Debug.Log("No Weapon component found under currentWeapon: " + weaponManager.currentWeapon.name);
+                return;
+            }
+
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane gamePlane = new Plane(Vector3.forward, transform.position);
+            float distance;
+
+            if (gamePlane.Raycast(ray, out distance))
+            {
+                Vector3 worldMousePosition = ray.GetPoint(distance);
+                weapon.Attack(worldMousePosition);
             }
         }
     }
+
     void FixedUpdate()
     {
         float move = Input.GetAxis("Horizontal");
@@ -53,11 +63,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat("speed", Mathf.Abs(move));
         }
+
         Vector3 currentLinearVelocity = rb.linearVelocity;
         rb.linearVelocity = new Vector3(move * runSpeed, currentLinearVelocity.y, currentLinearVelocity.z);
+
         if (move > 0f && !facingRight) Flip();
         else if (move < 0f && facingRight) Flip();
     }
+
     void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
@@ -67,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = false;
     }
+
     void Flip()
     {
         facingRight = !facingRight;

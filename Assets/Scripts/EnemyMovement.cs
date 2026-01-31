@@ -5,44 +5,104 @@ public class EnemyMovement : MonoBehaviour
     public Transform target;
     public Rigidbody rb;
 
-    public float speed = 3f;
-    public float stopDistance = 1.2f;
+    public float moveSpeed = 3f;
+
+    public float fallbackStopDistance = 1.6f;
+    public float fallbackStopTolerance = 0.2f;
 
     float fixedPosZ;
 
+    EnemyFireSpit enemyFireSpit;
+    EnemyAttack enemyAttack;
+    Animator animator;
+
     void Awake()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+            if (target == null)
+            {
+                Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            }
+        }
         if (rb == null) rb = GetComponent<Rigidbody>();
         fixedPosZ = transform.position.z;
+
+        enemyFireSpit = GetComponent<EnemyFireSpit>();
+        enemyAttack = GetComponent<EnemyAttack>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        if (target == null || rb == null) return;
+        if (target == null) return;
+        if (rb == null) return;
 
-        float posX = transform.position.x;
-        float posY = transform.position.y;
+        float posX = rb.position.x;
+        float posY = rb.position.y;
         float posZ = fixedPosZ;
 
-        transform.position = new Vector3(posX, posY, posZ);
+        rb.position = new Vector3(posX, posY, posZ);
 
         float targetPosX = target.position.x;
-        float distanceX = targetPosX - posX;
-        float absDistanceX = Mathf.Abs(distanceX);
 
-        if (absDistanceX <= stopDistance)
+        float horizontalDistanceToTarget = targetPosX - posX;
+        float absHorizontalDistanceToTarget = Mathf.Abs(horizontalDistanceToTarget);
+
+        float stopDistanceFromPlayer;
+        float stopTolerance;
+        GetStopBand(out stopDistanceFromPlayer, out stopTolerance);
+
+        float minStopDistance = Mathf.Max(0f, stopDistanceFromPlayer - stopTolerance);
+        float maxStopDistance = Mathf.Max(minStopDistance, stopDistanceFromPlayer + stopTolerance);
+
+        float verticalVelocity = rb.linearVelocity.y;
+
+        if (absHorizontalDistanceToTarget <= maxStopDistance)
         {
-            float velY = rb.linearVelocity.y;
-            rb.linearVelocity = new Vector3(0f, velY, 0f);
+            rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
+            FaceTarget(horizontalDistanceToTarget);
+            if (animator != null) animator.SetBool("isWalking", false);
             return;
         }
 
-        float moveDirX = Mathf.Sign(distanceX);
-        float velY2 = rb.linearVelocity.y;
-        rb.linearVelocity = new Vector3(moveDirX * speed, velY2, 0f);
+        float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
+        rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
+        if (animator != null) animator.SetBool("isWalking", true);
 
-        Vector3 scale = transform.localScale;
-        if (moveDirX > 0f && scale.x < 0f) transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
-        if (moveDirX < 0f && scale.x > 0f) transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+        FaceTarget(horizontalDistanceToTarget);
+    }
+
+    void GetStopBand(out float stopDistanceFromPlayer, out float stopTolerance)
+    {
+        if (enemyFireSpit != null && enemyFireSpit.enabled)
+        {
+            stopDistanceFromPlayer = Mathf.Max(0f, enemyFireSpit.stopDistanceFromPlayer);
+            stopTolerance = Mathf.Max(0f, enemyFireSpit.stopTolerance);
+            return;
+        }
+
+        if (enemyAttack != null && enemyAttack.enabled)
+        {
+            stopDistanceFromPlayer = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
+            stopTolerance = Mathf.Max(0f, enemyAttack.holdTolerance);
+            return;
+        }
+
+        stopDistanceFromPlayer = Mathf.Max(0f, fallbackStopDistance);
+        stopTolerance = Mathf.Max(0f, fallbackStopTolerance);
+    }
+
+    void FaceTarget(float horizontalDistanceToTarget)
+    {
+        float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
+
+        float scaleX = transform.localScale.x;
+        float scaleY = transform.localScale.y;
+        float scaleZ = transform.localScale.z;
+
+        if (moveDirection > 0f && scaleX < 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
+        if (moveDirection < 0f && scaleX > 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
     }
 }

@@ -6,24 +6,38 @@ public class Sword : Weapon
     public Collider swordCollider;
     public float attackDuration = 0.2f;
 
+    public bool logHits = true;
+
     void Start()
     {
         if (swordCollider == null)
         {
             swordCollider = GetComponent<Collider>();
         }
+
         if (swordCollider != null)
         {
             swordCollider.enabled = false;
         }
     }
 
+    void OnEnable()
+    {
+        if (swordCollider != null) swordCollider.enabled = false;
+    }
+
+    void OnDisable()
+    {
+        if (swordCollider != null) swordCollider.enabled = false;
+        StopAllCoroutines();
+    }
+
     public override void Attack(Vector3 targetPosition)
     {
-        if (swordCollider != null && !swordCollider.enabled)
-        {
-            StartCoroutine(SwingSword());
-        }
+        if (swordCollider == null) return;
+        if (swordCollider.enabled) return;
+
+        StartCoroutine(SwingSword());
     }
 
     IEnumerator SwingSword()
@@ -33,18 +47,16 @@ public class Sword : Weapon
         swordCollider.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (swordCollider != null && swordCollider.enabled)
+        if (swordCollider == null) return;
+        if (!swordCollider.enabled) return;
+
+        EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
+        if (enemyHealth != null)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                Health health = collision.gameObject.GetComponent<Health>();
-                if (health != null)
-                {
-                    health.addDamage(damage);
-                }
-            }
+            if (logHits) Debug.Log("Sword hit: " + other.name + " damage=" + damage);
+            enemyHealth.AddDamage(damage);
         }
     }
 }

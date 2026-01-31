@@ -6,49 +6,111 @@ public class EnemyAttack : MonoBehaviour
     public Transform hitPoint;
     public LayerMask playerLayer;
 
-    public float engageRange = 1.0f;
+    public float engageRange = 1.5f;
     public float hitRadius = 0.6f;
+
+    public float holdDistanceFromPlayer = 1.4f;
+    public float holdTolerance = 0.25f;
 
     public float damage = 10f;
     public float cooldown = 1.2f;
 
-    float nextTime;
+    float nextAttackTime;
+
+    Animator animator;
+
+    void Awake()
+    {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        }
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
         if (target == null) return;
-        if (Time.time < nextTime) return;
+        if (Time.time < nextAttackTime) return;
 
         float posX = transform.position.x;
         float targetPosX = target.position.x;
 
-        float distanceX = targetPosX - posX;
-        float absDistanceX = Mathf.Abs(distanceX);
+        float horizontalDistanceToTarget = targetPosX - posX;
+        float absHorizontalDistanceToTarget = Mathf.Abs(horizontalDistanceToTarget);
 
-        if (absDistanceX > engageRange) return;
+        if (absHorizontalDistanceToTarget > engageRange) return;
 
-        Hit();
-        nextTime = Time.time + cooldown;
+        TriggerAttack();
+        nextAttackTime = Time.time + cooldown;
     }
 
-    void Hit()
+    void TriggerAttack()
+    {
+        if (animator != null) animator.SetTrigger("attack");
+    }
+
+    // This function will be called by an animation event
+    public void Hit()
     {
         float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
         float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
         float hitPosZ = hitPoint != null ? hitPoint.position.z : transform.position.z;
 
-        Vector3 hitPos = new Vector3(hitPosX, hitPosY, hitPosZ);
+        Vector3 hitPosition = new Vector3(hitPosX, hitPosY, hitPosZ);
 
-        Collider[] hits = Physics.OverlapSphere(hitPos, hitRadius, playerLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(hitPosition, Mathf.Max(0f, hitRadius), playerLayer);
 
-        for (int i = 0; i < hits.Length; i++)
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            Health Health = hits[i].GetComponentInParent<Health>();
-            if (Health != null)
+            if (hitColliders[i] == null) continue;
+
+            Health health = hitColliders[i].GetComponentInParent<Health>();
+            if (health != null)
             {
-                Health.addDamage(damage);
+                health.addDamage(damage);
                 return;
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        float posX = transform.position.x;
+        float posY = transform.position.y;
+        float posZ = transform.position.z;
+
+        Vector3 origin = new Vector3(posX, posY, posZ);
+
+        Gizmos.color = new Color(1f, 0.9f, 0.2f, 1f);
+        DrawHorizontalRange(origin, engageRange);
+
+        float innerHoldDistance = Mathf.Max(0f, holdDistanceFromPlayer - holdTolerance);
+        float outerHoldDistance = Mathf.Max(innerHoldDistance, holdDistanceFromPlayer + holdTolerance);
+
+        Gizmos.color = new Color(0.2f, 0.9f, 1f, 1f);
+        DrawHorizontalRange(origin, outerHoldDistance);
+
+        Gizmos.color = new Color(1f, 0.2f, 0.2f, 1f);
+        DrawHorizontalRange(origin, innerHoldDistance);
+
+        float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
+        float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
+        float hitPosZ = hitPoint != null ? hitPoint.position.z : transform.position.z;
+
+        Gizmos.color = new Color(0.6f, 0.2f, 1f, 1f);
+        Gizmos.DrawWireSphere(new Vector3(hitPosX, hitPosY, hitPosZ), Mathf.Max(0f, hitRadius));
+    }
+
+    void DrawHorizontalRange(Vector3 origin, float range)
+    {
+        float safeRange = Mathf.Max(0f, range);
+
+        Vector3 left = new Vector3(origin.x - safeRange, origin.y, origin.z);
+        Vector3 right = new Vector3(origin.x + safeRange, origin.y, origin.z);
+
+        Gizmos.DrawLine(left, right);
+        Gizmos.DrawWireSphere(left, 0.08f);
+        Gizmos.DrawWireSphere(right, 0.08f);
     }
 }
