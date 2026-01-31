@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7748285974202714649}
   - component: {fileID: 5711361398573018502}
   - component: {fileID: 4687562865480168941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,8 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   rb: {fileID: 4815808547681233409}
-  speed: 3
-  stopDistance: 1.2
+  moveSpeed: 3
+  backOffSpeed: 4
+  fallbackHoldDistance: 5
+  fallbackHoldTolerance: 0.2
 --- !u!114 &7748285974202714649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,8 +208,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1093073440522083485, guid: 295fdeb04e0a8ec43bffe7d31395b727, type: 3}
   engageRange: 7
   cooldown: 2
+  idealDistanceFromPlayer: 5
+  minDistanceFromPlayer: 3.5
   projectileSpeed: 10
-  projectileDamage: 12
+  projectileDamage: 30
   projectileLifeTime: 2.5
   projectileHitLayers:
     serializedVersion: 2
@@ -224,7 +228,7 @@ GameObject:
   - component: {fileID: 7549719706473890885}
   - component: {fileID: 2313291305344671262}
   - component: {fileID: 5972854754155132789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MouthPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
