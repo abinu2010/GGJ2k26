@@ -5,6 +5,15 @@ public class Bow : Weapon
     public GameObject arrowPrefab;
     public Transform firePoint;
 
+    public override float GetDamage()
+    {
+        if (GameManager.Instance == null)
+        {
+            return damage;
+        }
+        return damage + GameManager.Instance.bowDamageBonus;
+    }
+
     public override void Attack(Vector3 targetPosition)
     {
         if (arrowPrefab != null && firePoint != null)
@@ -21,6 +30,7 @@ public class Bow : Weapon
             Projectile projectile = arrow.GetComponent<Projectile>();
             if (projectile != null)
             {
+                projectile.damage = GetDamage();
                 projectile.SetDirection(direction);
             }
         }
