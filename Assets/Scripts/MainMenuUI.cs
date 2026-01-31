@@ -19,4 +19,11 @@ public class MainMenuUI : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit Game"); // so you see it in editor
     }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; // important if coming from pause/death
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
