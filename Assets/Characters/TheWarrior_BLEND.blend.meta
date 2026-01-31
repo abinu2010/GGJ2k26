@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 525035ef4c72ddb4f8eae598de687c79
+guid: 086ac52928a1e0143ada9b18d8ec95a9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -80,7 +80,42 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: TheWarrior_BLEND(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0.2905444, y: 0.40584153, z: 2.5978906}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube.001
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0.2905444, y: 0.62644964, z: 3.1167362}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube.002
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0.29591867, y: 0.61974055, z: 3.007762}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube.003
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0.2905444, y: 0.6497957, z: 3.3680372}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube.004
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0.2905444, y: 0.77645344, z: 3.779197}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: TheWarrior_Mesh
+      parentName: TheWarrior_BLEND(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -95,9 +130,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 0
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
