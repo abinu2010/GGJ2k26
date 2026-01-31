@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 429806695}
   - component: {fileID: 429806694}
   - component: {fileID: 429806692}
+  - component: {fileID: 429806699}
   - component: {fileID: 429806697}
   - component: {fileID: 429806698}
   m_Layer: 0
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 15
+  jumpForce: 7
 --- !u!23 &429806694
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -380,6 +382,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &429806699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429806691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6d1455731aebd40a56e2d66efa706d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 100
 --- !u!1 &706024682
 GameObject:
   m_ObjectHideFlags: 0
