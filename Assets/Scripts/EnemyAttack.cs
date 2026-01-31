@@ -21,6 +21,10 @@ public class EnemyAttack : MonoBehaviour
 
     void Awake()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        }
         animator = GetComponent<Animator>();
     }
 
@@ -37,14 +41,18 @@ public class EnemyAttack : MonoBehaviour
 
         if (absHorizontalDistanceToTarget > engageRange) return;
 
-        PerformHit();
+        TriggerAttack();
         nextAttackTime = Time.time + cooldown;
     }
 
-    void PerformHit()
+    void TriggerAttack()
     {
         if (animator != null) animator.SetTrigger("attack");
+    }
 
+    // This function will be called by an animation event
+    public void Hit()
+    {
         float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
         float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
         float hitPosZ = hitPoint != null ? hitPoint.position.z : transform.position.z;

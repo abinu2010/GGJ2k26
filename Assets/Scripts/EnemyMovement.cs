@@ -18,6 +18,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+            if (target == null)
+            {
+                Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            }
+        }
         if (rb == null) rb = GetComponent<Rigidbody>();
         fixedPosZ = transform.position.z;
 

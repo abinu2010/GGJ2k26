@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  hitPoint: {fileID: 0}
+  hitPoint: {fileID: 4635659862654309356}
   playerLayer:
     serializedVersion: 2
     m_Bits: 9
@@ -358,6 +358,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+--- !u!4 &4635659862654309356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8109215540795074480, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+  m_PrefabInstance: {fileID: 3520852305251480668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8644215578744031479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5128184635235155115, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
