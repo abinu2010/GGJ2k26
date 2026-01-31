@@ -112,7 +112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -388,7 +388,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -540,6 +540,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6461270282351966398}
     m_Modifications:
+    - target: {fileID: 1787573789583784031, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
+    - target: {fileID: 3408432121311693373, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7960967696297959120, guid: bd53eb87669f7b84e961dd6a01c8df2d, type: 3}
+    - target: {fileID: 4675625776287226104, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
     - target: {fileID: 5128184635235155115, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -580,15 +592,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5218330369687324717, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6096782491894667534, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6096782491894667534, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385332133756854031, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5757113434995653787, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+    - {fileID: 3406998000997518063, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5218330369687324717, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202714240908568097}
   m_SourcePrefab: {fileID: 100100000, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+--- !u!65 &1533987700716443917 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7385332133756854031, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+  m_PrefabInstance: {fileID: 8301306046540891650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2857593896444927756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6096782491894667534, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
@@ -599,3 +633,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5128184635235155115, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
   m_PrefabInstance: {fileID: 8301306046540891650}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4278158027699768879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218330369687324717, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+  m_PrefabInstance: {fileID: 8301306046540891650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202714240908568097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278158027699768879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89298ed2128957a4884ec8895c77a9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  swordCollider: {fileID: 1533987700716443917}
+  attackDuration: 0.2
+  logHits: 1

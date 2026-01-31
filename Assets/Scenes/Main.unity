@@ -2044,6 +2044,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3735455528350768890, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735455528350768890, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
+    - target: {fileID: 3735455528350768890, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3994907117428782186, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_Name
       value: wandMesh
@@ -2056,6 +2068,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4562113326081659109, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
     - target: {fileID: 4695762015242145552, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2088,6 +2104,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 7624744050799517098, guid: 086ac52928a1e0143ada9b18d8ec95a9, type: 3}
+    - target: {fileID: 6663364997890952255, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7960967696297959120, guid: bd53eb87669f7b84e961dd6a01c8df2d, type: 3}
+    - target: {fileID: 7780695382479076957, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
     - target: {fileID: 8072624733217195647, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_Name
       value: bowMesh
@@ -2096,6 +2120,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1031616111}
+    - target: {fileID: 8531109858100339265, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
     m_RemovedComponents:
     - {fileID: 4382365239011981977, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
     - {fileID: 6664271352627924205, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
