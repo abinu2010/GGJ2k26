@@ -208,8 +208,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1093073440522083485, guid: 295fdeb04e0a8ec43bffe7d31395b727, type: 3}
   engageRange: 7
   cooldown: 2
-  idealDistanceFromPlayer: 5
-  minDistanceFromPlayer: 3.5
+  idealDistanceFromPlayer: 6
+  minDistanceFromPlayer: 4
   projectileSpeed: 10
   projectileDamage: 30
   projectileLifeTime: 2.5

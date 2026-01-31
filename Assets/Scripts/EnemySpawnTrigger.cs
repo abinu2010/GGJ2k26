@@ -4,33 +4,37 @@ using UnityEngine;
 public class EnemySpawnTrigger : MonoBehaviour
 {
     public Transform player;
-    public Transform spawnPointsRoot;
+    public Transform spawnPoint;
 
-    public bool spawnOnce = true;
+    public GameObject[] enemyPrefabs;
 
-    public WaveStep[] steps;
+    public int totalToSpawn = 8;
+    public float timeBetweenSpawns = 0.7f;
+    public int maxAliveAtOnce = 1;
+
+    public float minPlayerDistanceToSpawn = 5f;
+    public float spawnOffsetX = 0.35f;
 
     bool started;
     bool finished;
-    int stepIndex;
-    float nextStepTime;
+
+    int spawnedCount;
+    float nextSpawnTime;
 
     readonly List<GameObject> aliveEnemies = new List<GameObject>();
-
 
     void OnTriggerEnter(Collider other)
     {
         if (finished) return;
-        if (spawnOnce && started) return;
+        if (started) return;
 
-        if (other.GetComponentInParent<Health>() == null) return;
-        Debug.Log("Trigger hit");
+        Health health = other.GetComponentInParent<Health>();
+        if (health == null) return;
 
+        if (player == null) player = health.transform;
 
         started = true;
-        stepIndex = 0;
-        nextStepTime = Time.time;
-        RunStep();
+        nextSpawnTime = Time.time;
     }
 
     void Update()
@@ -40,105 +44,75 @@ public class EnemySpawnTrigger : MonoBehaviour
 
         CleanupDead();
 
-        if (steps == null || steps.Length == 0)
+        if (spawnedCount >= totalToSpawn)
         {
-            finished = true;
+            if (aliveEnemies.Count == 0)
+            {
+                finished = true;
+                gameObject.SetActive(false);
+            }
             return;
         }
 
-        if (stepIndex >= steps.Length)
+        if (Time.time < nextSpawnTime) return;
+
+        if (maxAliveAtOnce > 0 && aliveEnemies.Count >= maxAliveAtOnce)
         {
-            finished = true;
-            gameObject.SetActive(false);
+            nextSpawnTime = Time.time + 0.1f;
             return;
         }
 
-        WaveStep step = steps[stepIndex];
+        if (player == null) return;
+        if (spawnPoint == null) return;
+        if (enemyPrefabs == null) return;
+        if (enemyPrefabs.Length == 0) return;
 
-        if (step.waitUntilAllDead && aliveEnemies.Count > 0) return;
-        if (Time.time < nextStepTime) return;
+        float playerPosX = player.position.x;
+        float spawnPosX = spawnPoint.position.x;
 
-        RunStep();
+        float absDistance = Mathf.Abs(playerPosX - spawnPosX);
+        if (absDistance < minPlayerDistanceToSpawn)
+        {
+            nextSpawnTime = Time.time + 0.1f;
+            return;
+        }
+
+        SpawnOne();
+
+        spawnedCount++;
+        nextSpawnTime = Time.time + timeBetweenSpawns;
     }
 
-    void RunStep()
+    void SpawnOne()
     {
-        if (player == null) return;
-        if (spawnPointsRoot == null) return;
+        int prefabIndex = spawnedCount % enemyPrefabs.Length;
+        GameObject prefab = enemyPrefabs[prefabIndex];
+        if (prefab == null) return;
 
-        int spawnPointCount = spawnPointsRoot.childCount;
-        if (spawnPointCount <= 0) return;
+        float posX = spawnPoint.position.x;
+        float posY = spawnPoint.position.y;
+        float posZ = spawnPoint.position.z;
 
-        if (stepIndex >= steps.Length) return;
+        float offsetX = Random.Range(-spawnOffsetX, spawnOffsetX);
 
-        WaveStep step = steps[stepIndex];
+        GameObject enemyObj = Instantiate(prefab, new Vector3(posX + offsetX, posY, posZ), spawnPoint.rotation);
+        aliveEnemies.Add(enemyObj);
 
-        if (step.clearAliveListBeforeSpawn)
-        {
-            aliveEnemies.Clear();
-        }
+        EnemyMovement enemyMovement = enemyObj.GetComponent<EnemyMovement>();
+        if (enemyMovement != null) enemyMovement.target = player;
 
-        if (step.spawns != null)
-        {
-            for (int i = 0; i < step.spawns.Length; i++)
-            {
-                SpawnEntry entry = step.spawns[i];
-                if (entry.prefab == null) continue;
-                if (entry.count <= 0) continue;
+        EnemyAttack enemyAttack = enemyObj.GetComponent<EnemyAttack>();
+        if (enemyAttack != null) enemyAttack.target = player;
 
-                for (int c = 0; c < entry.count; c++)
-                {
-                    int spawnIndex = (entry.spawnPointStartIndex + c) % spawnPointCount;
-                    Transform spawnPoint = spawnPointsRoot.GetChild(spawnIndex);
-
-                    float posX = spawnPoint.position.x;
-                    float posY = spawnPoint.position.y;
-                    float posZ = spawnPoint.position.z;
-
-                    GameObject enemyObj = Instantiate(entry.prefab, new Vector3(posX, posY, posZ), spawnPoint.rotation);
-                    aliveEnemies.Add(enemyObj);
-
-                    EnemyMovement enemyMovement = enemyObj.GetComponent<EnemyMovement>();
-                    if (enemyMovement != null) enemyMovement.target = player;
-
-                    EnemyAttack enemyAttack = enemyObj.GetComponent<EnemyAttack>();
-                    if (enemyAttack != null) enemyAttack.target = player;
-
-                    EnemyFireSpit enemyFireSpit = enemyObj.GetComponent<EnemyFireSpit>();
-                    if (enemyFireSpit != null) enemyFireSpit.target = player;
-                }
-            }
-        }
-
-        stepIndex++;
-        nextStepTime = Time.time + step.delayAfterSpawn;
+        EnemyFireSpit enemyFireSpit = enemyObj.GetComponent<EnemyFireSpit>();
+        if (enemyFireSpit != null) enemyFireSpit.target = player;
     }
 
     void CleanupDead()
     {
         for (int i = aliveEnemies.Count - 1; i >= 0; i--)
         {
-            if (aliveEnemies[i] == null)
-            {
-                aliveEnemies.RemoveAt(i);
-            }
+            if (aliveEnemies[i] == null) aliveEnemies.RemoveAt(i);
         }
     }
-}
-
-[System.Serializable]
-public class WaveStep
-{
-    public bool waitUntilAllDead = true;
-    public float delayAfterSpawn = 0.5f;
-    public bool clearAliveListBeforeSpawn = false;
-    public SpawnEntry[] spawns;
-}
-
-[System.Serializable]
-public class SpawnEntry
-{
-    public GameObject prefab;
-    public int count = 1;
-    public int spawnPointStartIndex = 0;
 }
