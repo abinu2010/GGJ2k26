@@ -23,6 +23,8 @@ public class EnemySpawnTrigger : MonoBehaviour
         if (spawnOnce && started) return;
 
         if (other.GetComponentInParent<Health>() == null) return;
+        Debug.Log("Trigger hit");
+
 
         started = true;
         stepIndex = 0;
