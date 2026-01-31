@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     EnemyFireSpit enemyFireSpit;
     EnemyAttack enemyAttack;
+    Animator animator;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class EnemyMovement : MonoBehaviour
 
         enemyFireSpit = GetComponent<EnemyFireSpit>();
         enemyAttack = GetComponent<EnemyAttack>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -53,11 +55,13 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
             FaceTarget(horizontalDistanceToTarget);
+            if (animator != null) animator.SetBool("isWalking", false);
             return;
         }
 
         float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
         rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
+        if (animator != null) animator.SetBool("isWalking", true);
 
         FaceTarget(horizontalDistanceToTarget);
     }

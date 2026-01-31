@@ -22,6 +22,12 @@ public class EnemyFireSpit : MonoBehaviour
     public bool logShooting = false;
 
     float nextShotTime;
+    Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -49,6 +55,8 @@ public class EnemyFireSpit : MonoBehaviour
 
     void SpawnProjectile(float horizontalDistanceToTarget)
     {
+        if (animator != null) animator.SetTrigger("shoot");
+
         float spawnPosX = mouthPoint != null ? mouthPoint.position.x : transform.position.x;
         float spawnPosY = mouthPoint != null ? mouthPoint.position.y : transform.position.y;
         float spawnPosZ = mouthPoint != null ? mouthPoint.position.z : transform.position.z;

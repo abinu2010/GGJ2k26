@@ -17,6 +17,13 @@ public class EnemyAttack : MonoBehaviour
 
     float nextAttackTime;
 
+    Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (target == null) return;
@@ -36,6 +43,8 @@ public class EnemyAttack : MonoBehaviour
 
     void PerformHit()
     {
+        if (animator != null) animator.SetTrigger("attack");
+
         float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
         float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
         float hitPosZ = hitPoint != null ? hitPoint.position.z : transform.position.z;
