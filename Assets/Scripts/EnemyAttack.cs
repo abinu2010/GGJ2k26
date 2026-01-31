@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
     public Transform hitPoint;
     public LayerMask playerLayer;
 
-    public float engageRange = 1.0f;
+    public float engageRange = 1.5f;
     public float hitRadius = 0.6f;
 
     public float holdDistanceFromPlayer = 1.4f;
