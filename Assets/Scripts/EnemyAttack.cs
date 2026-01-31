@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyAttack : MonoBehaviour
 
     public float damage = 10f;
     public float cooldown = 1.2f;
+    public float attackAnimationDuration = 0.5f; // New variable
 
     float nextAttackTime;
 
@@ -47,7 +49,18 @@ public class EnemyAttack : MonoBehaviour
 
     void TriggerAttack()
     {
-        if (animator != null) animator.SetTrigger("attack");
+        if (animator != null)
+        {
+            animator.SetTrigger("attack");
+            StartCoroutine(AttackCoroutine()); // Start coroutine to manage "isAttacking" bool
+        }
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        if (animator != null) animator.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(attackAnimationDuration);
+        if (animator != null) animator.SetBool("isAttacking", false);
     }
 
     // This function will be called by an animation event
