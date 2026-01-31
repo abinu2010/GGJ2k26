@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     bool facingRight;
     bool isGrounded;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
         facingRight = true;
     }
 
-    // Update is called once per frame
+    public WeaponManager weaponManager;
+    public Camera mainCamera;
+
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -24,6 +26,23 @@ public class PlayerController : MonoBehaviour
             Vector3 currentLinearVelocity = rb.linearVelocity;
             rb.linearVelocity = new Vector3(currentLinearVelocity.x, jumpForce, currentLinearVelocity.z);
             isGrounded = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (weaponManager.currentWeapon != null && mainCamera != null)
+            {
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Plane gamePlane = new Plane(Vector3.forward, transform.position);
+                float distance;
+
+                if (gamePlane.Raycast(ray, out distance))
+                {
+                    Vector3 worldMousePosition = ray.GetPoint(distance);
+                    
+                    weaponManager.currentWeapon.GetComponent<Weapon>().Attack(worldMousePosition);
+                }
+            }
         }
     }
     void FixedUpdate()
