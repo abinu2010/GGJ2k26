@@ -5,6 +5,15 @@ public class Wand : Weapon
     public GameObject fireballPrefab;
     public Transform firePoint;
 
+    public override float GetDamage()
+    {
+        if (GameManager.Instance == null)
+        {
+            return damage;
+        }
+        return damage + GameManager.Instance.wandDamageBonus;
+    }
+
     public override void Attack(Vector3 targetPosition)
     {
         if (fireballPrefab != null && firePoint != null)
@@ -20,6 +29,7 @@ public class Wand : Weapon
             Projectile projectile = fireball.GetComponent<Projectile>();
             if (projectile != null)
             {
+                projectile.damage = GetDamage();
                 projectile.SetDirection(direction);
             }
         }
