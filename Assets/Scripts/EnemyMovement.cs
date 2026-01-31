@@ -27,66 +27,75 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (target == null || rb == null) return;
+        if (target == null) return;
+        if (rb == null) return;
 
-        Vector3 currentPos = rb.position;
-        currentPos.z = fixedPosZ;
-        rb.position = currentPos;
+        float posX = rb.position.x;
+        float posY = rb.position.y;
+        float posZ = fixedPosZ;
 
-        float horizontalDistanceToTarget = target.position.x - currentPos.x;
+        rb.position = new Vector3(posX, posY, posZ);
+
+        float targetPosX = target.position.x;
+
+        float horizontalDistanceToTarget = targetPosX - posX;
         float absHorizontalDistanceToTarget = Mathf.Abs(horizontalDistanceToTarget);
 
         float minHoldDistance;
         float maxHoldDistance;
         GetHoldBand(out minHoldDistance, out maxHoldDistance);
 
-        float desiredMoveDirection = 0f;
+        float moveDirection = 0f;
 
         if (absHorizontalDistanceToTarget > maxHoldDistance)
         {
-            desiredMoveDirection = Mathf.Sign(horizontalDistanceToTarget);
+            moveDirection = Mathf.Sign(horizontalDistanceToTarget);
         }
         else if (absHorizontalDistanceToTarget < minHoldDistance)
         {
-            desiredMoveDirection = -Mathf.Sign(horizontalDistanceToTarget);
+            moveDirection = -Mathf.Sign(horizontalDistanceToTarget);
         }
 
         float verticalVelocity = rb.linearVelocity.y;
 
-        if (desiredMoveDirection == 0f)
+        if (moveDirection == 0f)
         {
             rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
             return;
         }
 
-        bool isBackingOff = absHorizontalDistanceToTarget < minHoldDistance;
-        float speedToUse = isBackingOff ? backOffSpeed : moveSpeed;
+        bool backingOff = absHorizontalDistanceToTarget < minHoldDistance;
+        float speedToUse = backingOff ? backOffSpeed : moveSpeed;
 
-        rb.linearVelocity = new Vector3(desiredMoveDirection * speedToUse, verticalVelocity, 0f);
+        rb.linearVelocity = new Vector3(moveDirection * speedToUse, verticalVelocity, 0f);
 
-        Vector3 s = transform.localScale;
+        float scaleX = transform.localScale.x;
+        float scaleY = transform.localScale.y;
+        float scaleZ = transform.localScale.z;
 
-        if (desiredMoveDirection > 0f && s.x < 0f) transform.localScale = new Vector3(-s.x, s.y, s.z);
-        if (desiredMoveDirection < 0f && s.x > 0f) transform.localScale = new Vector3(-s.x, s.y, s.z);
+        if (moveDirection > 0f && scaleX < 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
+        if (moveDirection < 0f && scaleX > 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
     }
 
     void GetHoldBand(out float minHoldDistance, out float maxHoldDistance)
     {
         if (enemyFireSpit != null && enemyFireSpit.enabled)
         {
-            float min = Mathf.Max(0f, enemyFireSpit.minDistanceFromPlayer);
-            float max = Mathf.Max(min, enemyFireSpit.idealDistanceFromPlayer);
-            minHoldDistance = min;
-            maxHoldDistance = max;
+            float minDistance = Mathf.Max(0f, enemyFireSpit.minDistanceFromPlayer);
+            float maxDistance = Mathf.Max(minDistance, enemyFireSpit.idealDistanceFromPlayer);
+
+            minHoldDistance = minDistance;
+            maxHoldDistance = maxDistance;
             return;
         }
 
         if (enemyAttack != null && enemyAttack.enabled)
         {
-            float d = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
-            float t = Mathf.Max(0f, enemyAttack.holdTolerance);
-            minHoldDistance = Mathf.Max(0f, d - t);
-            maxHoldDistance = Mathf.Max(minHoldDistance, d + t);
+            float holdDistanceFromPlayer = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
+            float holdTolerance = Mathf.Max(0f, enemyAttack.holdTolerance);
+
+            minHoldDistance = Mathf.Max(0f, holdDistanceFromPlayer - holdTolerance);
+            maxHoldDistance = Mathf.Max(minHoldDistance, holdDistanceFromPlayer + holdTolerance);
             return;
         }
 
