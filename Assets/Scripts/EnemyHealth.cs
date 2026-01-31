@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class EnemyHealth : MonoBehaviour
 {
     public float maxHealth = 30f;
