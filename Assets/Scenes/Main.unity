@@ -374,7 +374,7 @@ MonoBehaviour:
   totalToSpawn: 8
   timeBetweenSpawns: 0.7
   maxAliveAtOnce: 1
-  minPlayerDistanceToSpawn: 11.09
+  minPlayerDistanceToSpawn: 3
   spawnOffsetX: 0.35
 --- !u!1 &266092950
 GameObject:
