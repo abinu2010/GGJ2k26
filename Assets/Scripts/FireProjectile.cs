@@ -39,10 +39,10 @@ public class FireProjectile : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & hitLayers.value) == 0) return;
 
-        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
-        if (playerHealth != null)
+        Health Health = other.GetComponentInParent<Health>();
+        if (Health != null)
         {
-            playerHealth.addDamage(damage);
+            Health.addDamage(damage);
         }
 
         Destroy(gameObject);

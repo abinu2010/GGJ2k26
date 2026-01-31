@@ -22,7 +22,7 @@ public class EnemySpawnTrigger : MonoBehaviour
         if (finished) return;
         if (spawnOnce && started) return;
 
-        if (other.GetComponentInParent<PlayerHealth>() == null) return;
+        if (other.GetComponentInParent<Health>() == null) return;
 
         started = true;
         stepIndex = 0;

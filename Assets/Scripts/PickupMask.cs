@@ -6,7 +6,7 @@ public class PickupMask : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
+        Health playerHealth = other.GetComponentInParent<Health>();
         if (playerHealth == null) return;
 
         if (MaskCheck.Instance != null)

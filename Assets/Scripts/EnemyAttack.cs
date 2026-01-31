@@ -43,10 +43,10 @@ public class EnemyAttack : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            PlayerHealth playerHealth = hits[i].GetComponentInParent<PlayerHealth>();
-            if (playerHealth != null)
+            Health Health = hits[i].GetComponentInParent<Health>();
+            if (Health != null)
             {
-                playerHealth.addDamage(damage);
+                Health.addDamage(damage);
                 return;
             }
         }
