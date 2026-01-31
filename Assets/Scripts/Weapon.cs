@@ -4,8 +4,7 @@ public class Weapon : MonoBehaviour
 {
     public float damage = 25f;
 
-    public virtual void Attack()
+    public virtual void Attack(Vector3 targetPosition)
     {
-        // Default attack behavior (can be empty)
     }
 }

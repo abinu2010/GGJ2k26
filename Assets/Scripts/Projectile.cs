@@ -30,20 +30,15 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        // Movement is now handled by the Rigidbody's velocity
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Commented out enemy tag check for testing
-        // if (other.CompareTag("Enemy"))
-        // {
-            Health health = other.GetComponent<Health>();
-            if (health != null)
-            {
-                health.addDamage(damage);
-            }
-            Destroy(gameObject);
-        // }
+        Health health = other.GetComponent<Health>();
+        if (health != null)
+        {
+            health.addDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }

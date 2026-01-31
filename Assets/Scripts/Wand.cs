@@ -5,15 +5,22 @@ public class Wand : Weapon
     public GameObject fireballPrefab;
     public Transform firePoint;
 
-    public override void Attack()
+    public override void Attack(Vector3 targetPosition)
     {
         if (fireballPrefab != null && firePoint != null)
         {
-            GameObject fireball = Instantiate(fireballPrefab, firePoint.position + firePoint.right * 5f, firePoint.rotation);
+            Vector3 direction = (targetPosition - firePoint.position).normalized;
+
+            direction.z = 0;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            GameObject fireball = Instantiate(fireballPrefab, firePoint.position, rotation);
             Projectile projectile = fireball.GetComponent<Projectile>();
             if (projectile != null)
             {
-                projectile.SetDirection(firePoint.right);
+                projectile.SetDirection(direction);
             }
         }
     }

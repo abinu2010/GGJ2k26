@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     bool facingRight;
     bool isGrounded;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public WeaponManager weaponManager;
+    public Camera mainCamera;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -30,9 +30,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (weaponManager.currentWeapon != null)
+            if (weaponManager.currentWeapon != null && mainCamera != null)
             {
-                weaponManager.currentWeapon.GetComponent<Weapon>().Attack();
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Plane gamePlane = new Plane(Vector3.forward, transform.position);
+                float distance;
+
+                if (gamePlane.Raycast(ray, out distance))
+                {
+                    Vector3 worldMousePosition = ray.GetPoint(distance);
+                    
+                    weaponManager.currentWeapon.GetComponent<Weapon>().Attack(worldMousePosition);
+                }
             }
         }
     }

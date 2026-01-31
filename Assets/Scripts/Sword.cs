@@ -1,10 +1,10 @@
 using UnityEngine;
-using System.Collections; // Needed for Coroutines
+using System.Collections;
 
 public class Sword : Weapon
 {
-    public Collider swordCollider; // Assign this in the inspector
-    public float attackDuration = 0.2f; // How long the sword stays active
+    public Collider swordCollider;
+    public float attackDuration = 0.2f;
 
     void Start()
     {
@@ -12,14 +12,13 @@ public class Sword : Weapon
         {
             swordCollider = GetComponent<Collider>();
         }
-        // Ensure the collider is initially disabled
         if (swordCollider != null)
         {
             swordCollider.enabled = false;
         }
     }
 
-    public override void Attack()
+    public override void Attack(Vector3 targetPosition)
     {
         if (swordCollider != null && !swordCollider.enabled)
         {
@@ -36,7 +35,6 @@ public class Sword : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Only deal damage if the collider is currently active (i.e., during an attack swing)
         if (swordCollider != null && swordCollider.enabled)
         {
             if (collision.gameObject.CompareTag("Enemy"))
