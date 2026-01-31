@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
+    void Start()
+    {
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.menuMusic);
+    }
+
+
     public void StartGame()
     {
         SceneManager.LoadScene("Main"); // your game scene name
