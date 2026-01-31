@@ -32,6 +32,15 @@ public class Sword : Weapon
         StopAllCoroutines();
     }
 
+    public override float GetDamage()
+    {
+        if (GameManager.Instance == null)
+        {
+            return damage;
+        }
+        return damage + GameManager.Instance.swordDamageBonus;
+    }
+
     public override void Attack(Vector3 targetPosition)
     {
         if (swordCollider == null) return;
@@ -55,8 +64,9 @@ public class Sword : Weapon
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            if (logHits) Debug.Log("Sword hit: " + other.name + " damage=" + damage);
-            enemyHealth.AddDamage(damage);
+            float finalDamage = GetDamage();
+            if (logHits) Debug.Log("Sword hit: " + other.name + " damage=" + finalDamage);
+            enemyHealth.AddDamage(finalDamage);
         }
     }
 }

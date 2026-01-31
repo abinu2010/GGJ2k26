@@ -1,0 +1,59 @@
+Here's a step-by-step guide to creating the UI for the knowledge check system in the Unity Editor:
+
+**1. Create the Knowledge Check Panel:**
+
+*   In the Hierarchy window, right-click and go to `UI -> Panel`. This will create a new Panel object, which will serve as the background for your knowledge check UI.
+*   Rename the Panel to `KnowledgeCheckPanel`.
+*   With the `KnowledgeCheckPanel` selected, go to the Inspector window and make sure the `Rect Transform` is set to stretch to the full screen. You can do this by clicking the anchor preset box and selecting the bottom-right stretch option while holding `Alt` and `Shift`.
+*   You can customize the color and transparency of the panel by adjusting the `Color` property of the `Image` component on the `KnowledgeCheckPanel`.
+
+**2. Add the Text:**
+
+*   Right-click on the `KnowledgeCheckPanel` in the Hierarchy and go to `UI -> Text - TextMeshPro`. This will create a new Text object as a child of the panel.
+*   Rename the Text object to `QuestionText`.
+*   Select the `QuestionText` object and in the Inspector, change the `Text` property to something like: "Your knowledge has been tested. Choose your reward wisely."
+*   You can adjust the font, font size, color, and alignment of the text to your liking.
+
+**3. Create the Buttons:**
+
+*   Right-click on the `KnowledgeCheckPanel` in the Hierarchy and go to `UI -> Button - TextMeshPro`. This will create a new Button object.
+*   Rename the Button object to `IntelligenceButton`.
+*   Select the `IntelligenceButton` and in the Inspector, find the `Text (TMP)` child object and change its `Text` property to "Intelligence".
+*   Duplicate the `IntelligenceButton` twice to create two more buttons.
+*   Rename the duplicates to `StrengthButton` and `AgilityButton`.
+*   Change the text of the `StrengthButton` to "Strength" and the `AgilityButton` to "Agility".
+*   Arrange the three buttons on the `KnowledgeCheckPanel` as you see fit. You can use the `Rect Transform` properties to position them.
+
+**4. Hook up the UI to the Scripts:**
+
+*   Create a new empty GameObject in your scene and name it `UIManager`.
+*   Add the `UIManager.cs` script to this GameObject.
+*   Create another empty GameObject and name it `KnowledgeManager`.
+*   Add the `KnowledgeManager.cs` script to this GameObject.
+*   Create a `GameManager` object if you haven't already and attach the `GameManager.cs` script.
+
+**5. Connect the UI Elements:**
+
+*   Select the `KnowledgeManager` GameObject in the Hierarchy.
+*   In the Inspector, you will see a `Knowledge Panel` field. Drag the `KnowledgeCheckPanel` from the Hierarchy into this field.
+*   Select the `UIManager` GameObject.
+*   In the Inspector, you will see a `Player Controller` field. Drag your `Player` object (the one with the `PlayerController.cs` script) into this field.
+*   By default, the `KnowledgeCheckPanel` should be disabled. You can do this by unchecking the box next to its name in the Inspector. The `KnowledgeManager` will enable it when needed.
+
+**6. Connect the Button Clicks:**
+
+*   Select the `IntelligenceButton` in the Hierarchy.
+*   In the Inspector, scroll down to the `Button` component and find the `On Click ()` section.
+*   Click the `+` icon to add a new event.
+*   Drag the `UIManager` GameObject from the Hierarchy into the `None (Object)` field.
+*   Click on the `No Function` dropdown and select `UIManager -> OnIntelligenceButtonClicked()`.
+*   Repeat this process for the `StrengthButton` and `AgilityButton`, selecting the `OnStrengthButtonClicked()` and `OnAgilityButtonClicked()` methods respectively.
+
+**7. Testing:**
+
+*   Play your game and defeat an enemy that drops a mask piece.
+*   The `KnowledgeCheckPanel` should appear, and the game should pause.
+*   Click on one of the buttons. The panel should disappear, the game should resume, and the corresponding damage bonus should be applied if you are holding the correct weapon.
+*   Defeat another enemy. The panel should not appear again.
+
+That's it! You have now successfully created and integrated the knowledge check UI into your game.
