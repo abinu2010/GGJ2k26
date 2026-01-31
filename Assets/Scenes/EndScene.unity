@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26, y: 217}
+  m_AnchoredPosition: {x: -137, y: 217}
   m_SizeDelta: {x: 537.9579, y: 89.132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &170991382
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Escaped !
+  m_text: The Mask Chooses You
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e707c2edd46c49c48c69c2efd49b3cf, type: 2}
   m_sharedMaterial: {fileID: -6514941948648173536, guid: 9e707c2edd46c49c48c69c2efd49b3cf, type: 2}
@@ -203,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80.4
-  m_fontSizeBase: 80.4
+  m_fontSize: 63.1
+  m_fontSizeBase: 63.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -92.49359, w: -12.451141}
+  m_margin: {x: 0, y: 0, z: -539.15314, w: -12.451141}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -291,7 +291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: 65}
+  m_AnchoredPosition: {x: 0.0000076294, y: 46}
   m_SizeDelta: {x: 236.4852, y: 42.4511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &444959663
@@ -1077,7 +1077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: -6}
+  m_AnchoredPosition: {x: 0.0000076294, y: -38}
   m_SizeDelta: {x: 236.4852, y: 42.4511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731500593
