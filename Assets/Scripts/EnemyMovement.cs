@@ -14,14 +14,24 @@ public class EnemyMovement : MonoBehaviour
 
     EnemyFireSpit enemyFireSpit;
     EnemyAttack enemyAttack;
+    Animator animator;
 
     void Awake()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+            if (target == null)
+            {
+                Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            }
+        }
         if (rb == null) rb = GetComponent<Rigidbody>();
         fixedPosZ = transform.position.z;
 
         enemyFireSpit = GetComponent<EnemyFireSpit>();
         enemyAttack = GetComponent<EnemyAttack>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -53,11 +63,13 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
             FaceTarget(horizontalDistanceToTarget);
+            if (animator != null) animator.SetBool("isWalking", false);
             return;
         }
 
         float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
         rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
+        if (animator != null) animator.SetBool("isWalking", true);
 
         FaceTarget(horizontalDistanceToTarget);
     }

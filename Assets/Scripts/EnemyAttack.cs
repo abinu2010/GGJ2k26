@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
     public Transform hitPoint;
     public LayerMask playerLayer;
 
-    public float engageRange = 1.0f;
+    public float engageRange = 1.5f;
     public float hitRadius = 0.6f;
 
     public float holdDistanceFromPlayer = 1.4f;
@@ -16,6 +16,17 @@ public class EnemyAttack : MonoBehaviour
     public float cooldown = 1.2f;
 
     float nextAttackTime;
+
+    Animator animator;
+
+    void Awake()
+    {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        }
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -30,11 +41,17 @@ public class EnemyAttack : MonoBehaviour
 
         if (absHorizontalDistanceToTarget > engageRange) return;
 
-        PerformHit();
+        TriggerAttack();
         nextAttackTime = Time.time + cooldown;
     }
 
-    void PerformHit()
+    void TriggerAttack()
+    {
+        if (animator != null) animator.SetTrigger("attack");
+    }
+
+    // This function will be called by an animation event
+    public void Hit()
     {
         float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
         float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
