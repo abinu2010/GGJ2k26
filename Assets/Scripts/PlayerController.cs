@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public float runSpeed = 6f;
     public float jumpForce = 7f;
+    public float attackAnimationDuration = 0.5f; // Set this in the Inspector based on your animation length
 
     Rigidbody rb;
     public Animator animator;
@@ -23,12 +25,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Jumping
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Vector3 currentLinearVelocity = rb.linearVelocity;
-            rb.linearVelocity = new Vector3(currentLinearVelocity.x, jumpForce, currentLinearVelocity.z);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetBool("isJumping", true);
             isGrounded = false;
         }
+
+        // Floating
+        if (!isGrounded && rb.linearVelocity.y < 0)
+        {
+            animator.SetBool("isFloating", true);
+        }
+        else
+        {
+            animator.SetBool("isFloating", false);
+        }
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -43,6 +57,22 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
+            animator.SetTrigger("Attack");
+
+            if (weapon.GetComponent<Sword>() != null)
+            {
+                StartCoroutine(AttackCoroutine("isSwordAttacking"));
+            }
+            else if (weapon.GetComponent<Bow>() != null)
+            {
+                StartCoroutine(AttackCoroutine("isBowAttacking"));
+            }
+            else if (weapon.GetComponent<Wand>() != null)
+            {
+                StartCoroutine(AttackCoroutine("isWandAttacking"));
+            }
+
+
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             Plane gamePlane = new Plane(Vector3.forward, transform.position);
             float distance;
@@ -53,6 +83,13 @@ public class PlayerController : MonoBehaviour
                 weapon.Attack(worldMousePosition);
             }
         }
+    }
+
+    IEnumerator AttackCoroutine(string attackBoolName)
+    {
+        animator.SetBool(attackBoolName, true);
+        yield return new WaitForSeconds(attackAnimationDuration);
+        animator.SetBool(attackBoolName, false);
     }
 
     void FixedUpdate()
@@ -74,11 +111,14 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isLanding", true);
     }
 
     void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+        animator.SetBool("isLanding", false);
     }
 
     void Flip()

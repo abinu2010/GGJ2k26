@@ -44,9 +44,16 @@ public class EnemyHealth : MonoBehaviour
                 Debug.Log(name + " died");
             }
 
-            if (maskPieceDrop != null) maskPieceDrop.Drop();
-
-            Destroy(gameObject);
+            if (KnowledgeManager.Instance != null && !GameManager.Instance.knowledgeCheckPerformed)
+            {
+                KnowledgeManager.Instance.ShowKnowledgeCheck(maskPieceDrop, gameObject);
+                gameObject.SetActive(false); // Disable the enemy instead of destroying it
+            }
+            else
+            {
+                if (maskPieceDrop != null) maskPieceDrop.Drop();
+                Destroy(gameObject);
+            }
         }
     }
 }
