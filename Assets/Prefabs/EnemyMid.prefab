@@ -158,9 +158,8 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 4815808547681233409}
   moveSpeed: 3
-  backOffSpeed: 4
-  fallbackHoldDistance: 5
-  fallbackHoldTolerance: 0.2
+  fallbackStopDistance: 1.6
+  fallbackStopTolerance: 0.2
 --- !u!114 &7748285974202714649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +175,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 30
   dead: 0
+  logDamage: 1
 --- !u!114 &5711361398573018502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,14 +208,15 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1093073440522083485, guid: 295fdeb04e0a8ec43bffe7d31395b727, type: 3}
   engageRange: 7
   cooldown: 2
-  idealDistanceFromPlayer: 6
-  minDistanceFromPlayer: 4
+  stopDistanceFromPlayer: 4.5
+  stopTolerance: 0.25
   projectileSpeed: 10
   projectileDamage: 30
   projectileLifeTime: 2.5
   projectileHitLayers:
     serializedVersion: 2
     m_Bits: 9
+  logShooting: 1
 --- !u!1 &8862434046958345355
 GameObject:
   m_ObjectHideFlags: 0

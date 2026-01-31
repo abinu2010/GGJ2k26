@@ -6,23 +6,22 @@ public class EnemyMovement : MonoBehaviour
     public Rigidbody rb;
 
     public float moveSpeed = 3f;
-    public float backOffSpeed = 4f;
 
-    public float fallbackHoldDistance = 1.2f;
-    public float fallbackHoldTolerance = 0.2f;
+    public float fallbackStopDistance = 1.6f;
+    public float fallbackStopTolerance = 0.2f;
 
     float fixedPosZ;
 
-    EnemyAttack enemyAttack;
     EnemyFireSpit enemyFireSpit;
+    EnemyAttack enemyAttack;
 
     void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
         fixedPosZ = transform.position.z;
 
-        enemyAttack = GetComponent<EnemyAttack>();
         enemyFireSpit = GetComponent<EnemyFireSpit>();
+        enemyAttack = GetComponent<EnemyAttack>();
     }
 
     void FixedUpdate()
@@ -41,33 +40,51 @@ public class EnemyMovement : MonoBehaviour
         float horizontalDistanceToTarget = targetPosX - posX;
         float absHorizontalDistanceToTarget = Mathf.Abs(horizontalDistanceToTarget);
 
-        float minHoldDistance;
-        float maxHoldDistance;
-        GetHoldBand(out minHoldDistance, out maxHoldDistance);
+        float stopDistanceFromPlayer;
+        float stopTolerance;
+        GetStopBand(out stopDistanceFromPlayer, out stopTolerance);
 
-        float moveDirection = 0f;
-
-        if (absHorizontalDistanceToTarget > maxHoldDistance)
-        {
-            moveDirection = Mathf.Sign(horizontalDistanceToTarget);
-        }
-        else if (absHorizontalDistanceToTarget < minHoldDistance)
-        {
-            moveDirection = -Mathf.Sign(horizontalDistanceToTarget);
-        }
+        float minStopDistance = Mathf.Max(0f, stopDistanceFromPlayer - stopTolerance);
+        float maxStopDistance = Mathf.Max(minStopDistance, stopDistanceFromPlayer + stopTolerance);
 
         float verticalVelocity = rb.linearVelocity.y;
 
-        if (moveDirection == 0f)
+        if (absHorizontalDistanceToTarget <= maxStopDistance)
         {
             rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
+            FaceTarget(horizontalDistanceToTarget);
             return;
         }
 
-        bool backingOff = absHorizontalDistanceToTarget < minHoldDistance;
-        float speedToUse = backingOff ? backOffSpeed : moveSpeed;
+        float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
+        rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
 
-        rb.linearVelocity = new Vector3(moveDirection * speedToUse, verticalVelocity, 0f);
+        FaceTarget(horizontalDistanceToTarget);
+    }
+
+    void GetStopBand(out float stopDistanceFromPlayer, out float stopTolerance)
+    {
+        if (enemyFireSpit != null && enemyFireSpit.enabled)
+        {
+            stopDistanceFromPlayer = Mathf.Max(0f, enemyFireSpit.stopDistanceFromPlayer);
+            stopTolerance = Mathf.Max(0f, enemyFireSpit.stopTolerance);
+            return;
+        }
+
+        if (enemyAttack != null && enemyAttack.enabled)
+        {
+            stopDistanceFromPlayer = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
+            stopTolerance = Mathf.Max(0f, enemyAttack.holdTolerance);
+            return;
+        }
+
+        stopDistanceFromPlayer = Mathf.Max(0f, fallbackStopDistance);
+        stopTolerance = Mathf.Max(0f, fallbackStopTolerance);
+    }
+
+    void FaceTarget(float horizontalDistanceToTarget)
+    {
+        float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
 
         float scaleX = transform.localScale.x;
         float scaleY = transform.localScale.y;
@@ -75,31 +92,5 @@ public class EnemyMovement : MonoBehaviour
 
         if (moveDirection > 0f && scaleX < 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
         if (moveDirection < 0f && scaleX > 0f) transform.localScale = new Vector3(-scaleX, scaleY, scaleZ);
-    }
-
-    void GetHoldBand(out float minHoldDistance, out float maxHoldDistance)
-    {
-        if (enemyFireSpit != null && enemyFireSpit.enabled)
-        {
-            float minDistance = Mathf.Max(0f, enemyFireSpit.minDistanceFromPlayer);
-            float maxDistance = Mathf.Max(minDistance, enemyFireSpit.idealDistanceFromPlayer);
-
-            minHoldDistance = minDistance;
-            maxHoldDistance = maxDistance;
-            return;
-        }
-
-        if (enemyAttack != null && enemyAttack.enabled)
-        {
-            float holdDistanceFromPlayer = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
-            float holdTolerance = Mathf.Max(0f, enemyAttack.holdTolerance);
-
-            minHoldDistance = Mathf.Max(0f, holdDistanceFromPlayer - holdTolerance);
-            maxHoldDistance = Mathf.Max(minHoldDistance, holdDistanceFromPlayer + holdTolerance);
-            return;
-        }
-
-        minHoldDistance = Mathf.Max(0f, fallbackHoldDistance - fallbackHoldTolerance);
-        maxHoldDistance = Mathf.Max(minHoldDistance, fallbackHoldDistance + fallbackHoldTolerance);
     }
 }
