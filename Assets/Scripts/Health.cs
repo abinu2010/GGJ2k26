@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public float fullHealth;
     float currentHealth;

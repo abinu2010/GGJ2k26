@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
         facingRight = true;
     }
 
+    public WeaponManager weaponManager;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +26,14 @@ public class PlayerController : MonoBehaviour
             Vector3 currentLinearVelocity = rb.linearVelocity;
             rb.linearVelocity = new Vector3(currentLinearVelocity.x, jumpForce, currentLinearVelocity.z);
             isGrounded = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (weaponManager.currentWeapon != null)
+            {
+                weaponManager.currentWeapon.GetComponent<Weapon>().Attack();
+            }
         }
     }
     void FixedUpdate()
