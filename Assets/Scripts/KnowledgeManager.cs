@@ -5,8 +5,6 @@ public class KnowledgeManager : MonoBehaviour
     public static KnowledgeManager Instance;
 
     public GameObject knowledgePanel;
-    private MaskPieceDrop maskPieceDropper;
-    private GameObject enemyToDestroy;
 
     private void Awake()
     {
@@ -28,26 +26,15 @@ public class KnowledgeManager : MonoBehaviour
             return;
         }
 
-        if (dropper == null)
-        {
-            Debug.LogWarning("MaskPieceDrop component is null. Cannot perform knowledge check.");
-        }
-
-        maskPieceDropper = dropper;
         knowledgePanel.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void HideKnowledgeCheck()
     {
+        Debug.Log("HideKnowledgeCheck() called.");
         knowledgePanel.SetActive(false);
         Time.timeScale = 1;
-
-        if (maskPieceDropper != null)
-        {
-            maskPieceDropper.Drop();
-            maskPieceDropper = null;
-        }
 
         if (GameManager.Instance != null)
         {

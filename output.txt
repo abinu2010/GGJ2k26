@@ -1,1 +1,0 @@
-I've updated `PlayerController.cs` to manage attack animation booleans. Now, `attackAnimationDuration` must be set in Unity. A new coroutine sets the relevant attack boolean true, then false after the animation duration, precisely timing the animation state. Task complete.

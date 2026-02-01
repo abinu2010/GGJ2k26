@@ -11,6 +11,10 @@ public class PickupMask : MonoBehaviour
 
         if (MaskCheck.Instance != null)
         {
+            if (KnowledgeManager.Instance != null && !GameManager.Instance.knowledgeCheckPerformed)
+            {
+                KnowledgeManager.Instance.ShowKnowledgeCheck(null, null);
+            }
             MaskCheck.Instance.Collect(pieceId);
         }
 
