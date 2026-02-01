@@ -4,23 +4,30 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
-    [Header("Audio Sources")]
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
-
-    [Header("Clips")]
+    public AudioClip crossBowHit;
+    public AudioClip enemyHit;
+    public AudioClip footsteps;
+    public AudioClip inGameMusic;
+    public AudioClip magicHit;
+    public AudioClip maskFound;
+    public AudioClip swordHit;
+    public AudioClip uiButton;
     public AudioClip menuMusic;
-    public AudioClip ingameMusic;
-    public AudioClip maskFoundSFX;
-    public AudioClip buttonClickSFX;
 
-    private void Awake()
+    private AudioSource musicSource;
+    private AudioSource soundEffectSource;
+
+    void Awake()
     {
-        // Singleton
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            musicSource = gameObject.AddComponent<AudioSource>();
+            soundEffectSource = gameObject.AddComponent<AudioSource>();
+
+            musicSource.loop = true;
         }
         else
         {
@@ -28,16 +35,24 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        PlayMusic(inGameMusic);
+    }
+
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
-        musicSource.loop = true;
         musicSource.Play();
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void StopMusic()
     {
-        sfxSource.PlayOneShot(clip);
+        musicSource.Stop();
+    }
+
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        soundEffectSource.PlayOneShot(clip);
     }
 }
-

@@ -68,6 +68,10 @@ public class Sword : Weapon
             float finalDamage = GetDamage();
             if (logHits) Debug.Log("Sword hit: " + other.name + " (" + enemyHealth.name + ") with damage=" + finalDamage);
             enemyHealth.AddDamage(finalDamage);
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.swordHit);
+            }
         }
     }
 }

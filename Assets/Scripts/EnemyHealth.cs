@@ -35,6 +35,11 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log(name + " took damage: " + damage + " | HP: " + healthBefore + " -> " + currentHealth + " / " + maxHealth);
         }
 
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.enemyHit);
+        }
+
         if (currentHealth <= 0f)
         {
             dead = true;

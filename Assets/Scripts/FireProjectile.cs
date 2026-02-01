@@ -5,6 +5,7 @@ public class FireProjectile : MonoBehaviour
     public float speed = 10f;
     public float damage = 12f;
     public float lifeTime = 2.5f;
+    public bool isMagic;
 
     public LayerMask hitLayers;
 
@@ -43,6 +44,18 @@ public class FireProjectile : MonoBehaviour
         if (Health != null)
         {
             Health.addDamage(damage);
+        }
+
+        if (SoundManager.Instance != null)
+        {
+            if (isMagic)
+            {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.magicHit);
+            }
+            else
+            {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.crossBowHit);
+            }
         }
 
         Destroy(gameObject);

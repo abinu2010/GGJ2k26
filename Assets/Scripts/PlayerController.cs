@@ -15,16 +15,36 @@ public class PlayerController : MonoBehaviour
 
     public WeaponManager weaponManager;
     public Camera mainCamera;
+    AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         facingRight = true;
     }
 
     void Update()
     {
+        // Footsteps
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = SoundManager.Instance.footsteps;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying && audioSource.clip == SoundManager.Instance.footsteps)
+            {
+                audioSource.Stop();
+            }
+        }
+
         // Jumping
         if (Input.GetButtonDown("Jump") && isGrounded)
         {

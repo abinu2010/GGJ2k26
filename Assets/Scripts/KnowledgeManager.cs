@@ -32,6 +32,10 @@ public class KnowledgeManager : MonoBehaviour
 
     public void HideKnowledgeCheck()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.uiButton);
+        }
         Debug.Log("HideKnowledgeCheck() called.");
         knowledgePanel.SetActive(false);
         Time.timeScale = 1;
