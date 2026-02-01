@@ -77,7 +77,7 @@ MonoBehaviour:
   hitRadius: 0.5
   holdDistanceFromPlayer: 1.4
   holdTolerance: 0.25
-  damage: 100
+  damage: 10
   cooldown: 0.9
   attackAnimationDuration: 0.5
   hitDelay: 0.2
