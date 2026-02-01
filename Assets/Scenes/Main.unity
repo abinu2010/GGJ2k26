@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de529801b5f8cd40b6222a8b2704c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4491755809392437557}
+  player: {fileID: 0}
   spawners:
   - enemyPrefab: {fileID: 2753808879608724137, guid: ad7deac547356b246af45210f222780b, type: 3}
     spawnPoint: {fileID: 2076558749}
@@ -2222,7 +2222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de529801b5f8cd40b6222a8b2704c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4491755809392437557}
+  player: {fileID: 0}
   spawners:
   - enemyPrefab: {fileID: 2753808879608724137, guid: 86d3841b74c59a24dabf44424f637428, type: 3}
     spawnPoint: {fileID: 1165074862}
@@ -2294,7 +2294,7 @@ RectTransform:
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1508417218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2533,11 +2533,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894268187}
   m_CullTransparentMesh: 1
---- !u!4 &904865935 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2144844957058324514, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &999102768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,9 +2594,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1064981973}
-  m_Father: {fileID: 1508417218}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2652,7 +2646,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 454549500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnAgilityButtonClicked
         m_Mode: 1
@@ -2808,8 +2802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be862deb58aecb840a0466134dcdf20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4491755809392437557}
-  offset: {x: 4, y: 0, z: -6}
+  target: {fileID: 429806696}
+  offset: {x: 5, y: 0, z: -8}
 --- !u!114 &1031616114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3744,40 +3738,16 @@ PrefabInstance:
       addedObject: {fileID: 274211517}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 15487232}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 424653908}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 54232123}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 102783338}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 147844594}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1354690716}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1130071396}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 991495}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 417686550}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1307896287}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1309798078}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1374033507}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec624223f777ae4ba5946f315ec3848, type: 3}
 --- !u!4 &1315375646 stripped
@@ -4381,9 +4351,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 99360424}
-  m_Father: {fileID: 1508417218}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4434,7 +4403,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 454549500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnStrengthButtonClicked
         m_Mode: 1
@@ -4578,7 +4547,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 652411256}
-  m_Father: {fileID: 1508417218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4629,7 +4598,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 454549500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnIntelligenceButtonClicked
         m_Mode: 1
@@ -4764,7 +4733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de529801b5f8cd40b6222a8b2704c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4491755809392437557}
+  player: {fileID: 0}
   spawners:
   - enemyPrefab: {fileID: 4306794033120867019, guid: 0f379357c3e89664fb1deab42a2ff091, type: 3}
     spawnPoint: {fileID: 266092951}
@@ -4958,11 +4927,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
---- !u!4 &4491755809392437557 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 97308512826148613, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4974,19 +4938,15 @@ SceneRoots:
   - {fileID: 149029756}
   - {fileID: 74142914}
   - {fileID: 1361133294}
-  - {fileID: 454549501}
-  - {fileID: 176890407}
   - {fileID: 199990352}
   - {fileID: 218894388}
   - {fileID: 293957057}
   - {fileID: 369925915}
   - {fileID: 383897271}
-  - {fileID: 415796593}
   - {fileID: 1127329871}
   - {fileID: 1299890574}
   - {fileID: 1315375645}
   - {fileID: 1335679851}
-  - {fileID: 1377268406}
   - {fileID: 183199177}
   - {fileID: 652562289}
   - {fileID: 2075070339}
@@ -5001,3 +4961,7 @@ SceneRoots:
   - {fileID: 999102769}
   - {fileID: 1733558525}
   - {fileID: 1165074862}
+  - {fileID: 821774953}
+  - {fileID: 1002067999}
+  - {fileID: 1573023986}
+  - {fileID: 1895104628}
