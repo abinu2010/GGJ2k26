@@ -16,6 +16,10 @@ public class PickupMask : MonoBehaviour
                 KnowledgeManager.Instance.ShowKnowledgeCheck(null, null);
             }
             MaskCheck.Instance.Collect(pieceId);
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.maskFound);
+            }
         }
 
         Destroy(gameObject);

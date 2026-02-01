@@ -7,7 +7,22 @@ public class MainMenuUI : MonoBehaviour
     private bool isPaused = false;
     void Start()
     {
-        SoundManager.Instance.PlayMusic(SoundManager.Instance.menuMusic);
+        if (SoundManager.Instance == null)
+        {
+            GameObject soundManagerPrefab = Resources.Load<GameObject>("SoundManager"); // Assuming your SoundManager prefab is in a Resources folder
+            if (soundManagerPrefab != null)
+            {
+                Instantiate(soundManagerPrefab);
+            }
+            else
+            {
+                Debug.LogError("SoundManager prefab not found in Resources. Please create a SoundManager prefab and place it in a Resources folder.");
+            }
+        }
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayMusic(SoundManager.Instance.menuMusic);
+        }
     }
 
     void Update()
