@@ -77,7 +77,7 @@ MonoBehaviour:
   hitRadius: 0.6
   holdDistanceFromPlayer: 1.4
   holdTolerance: 0.25
-  damage: 10
+  damage: 7
   cooldown: 0.9
   attackAnimationDuration: 0.5
   hitDelay: 0.2
@@ -93,10 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26aeb4531c846254087ff6ba6bceeb5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  currentHealth: 30
+  maxHealth: 100
+  currentHealth: 100
   dead: 0
-  logDamage: 1
+  logDamage: 0
 --- !u!95 &-1562191137322605535
 Animator:
   serializedVersion: 7
