@@ -123,6 +123,8 @@ MonoBehaviour:
   currentHealth: 30
   dead: 0
   logDamage: 0
+  dmgPoint: {fileID: 2101625583820023487}
+  blood: {fileID: 6823200998282874702, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
 --- !u!114 &5711361398573018502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +188,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5608746022884561107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101625583820023487}
+  m_Layer: 0
+  m_Name: dmg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2101625583820023487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608746022884561107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.032, y: 1.246, z: 0.183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5347044598645735191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8241895855168560530
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +328,9 @@ PrefabInstance:
     - {fileID: 5866666021909216657, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2101625583820023487}
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1439965684155470042}
