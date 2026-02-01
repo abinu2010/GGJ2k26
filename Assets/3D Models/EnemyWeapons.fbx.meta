@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 449fbb76a72b7ce48bb2d338bef873b7
+guid: 76e9e62bedb70914aa75a4dd89b2c2c9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: heroProps_Mat
-    second: {fileID: 2100000, guid: 691fbb38d5c749e48b22ddd2cffd15eb, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

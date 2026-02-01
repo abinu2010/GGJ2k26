@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8006741663167385676}
   m_Layer: 6
   m_Name: EnemyBig
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2753808879608724137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.36, y: 0.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59,9 +59,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!54 &4815808547681233409
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26aeb4531c846254087ff6ba6bceeb5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 30
+  currentHealth: 30
   dead: 0
   logDamage: 0
 --- !u!114 &5711361398573018502
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e87ac302afe1c42b6afe22a9b32afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupPrefab: {fileID: 5673505882667900833, guid: 8a0b3000f4f67eb4ca3d1c2aca323bcf, type: 3}
+  pickupPrefab: {fileID: 7017621708168996992, guid: feb72316cc2415e448bf49097a5ddaaf, type: 3}
   pieceId: 1
   offset: {x: 4, y: 1, z: 0}
 --- !u!114 &4687562865480168941
@@ -152,17 +152,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   mouthPoint: {fileID: 1439965684155470042}
-  projectilePrefab: {fileID: 1093073440522083485, guid: 295fdeb04e0a8ec43bffe7d31395b727, type: 3}
+  projectilePrefab: {fileID: 1093073440522083485, guid: a68d0aa531e1bc948bb9e963cae08741, type: 3}
   engageRange: 7
   cooldown: 2
   stopDistanceFromPlayer: 4.5
   stopTolerance: 0.25
   projectileSpeed: 10
-  projectileDamage: 10
+  projectileDamage: 50
   projectileLifeTime: 2.5
   projectileHitLayers:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 8
   logShooting: 1
 --- !u!95 &8006741663167385676
 Animator:
@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 8241895855168560530}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 0.14, z: -0}
+  m_LocalPosition: {x: -0.119, y: -0.024, z: -0.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -237,7 +237,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5601982911181904124
 PrefabInstance:
@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.64278764
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalRotation.x
@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.76604444
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalRotation.z
@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -291,7 +291,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: bigEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: df5be9a91b85324419f0d8deee3a6144, type: 3}
