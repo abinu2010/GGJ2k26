@@ -2848,31 +2848,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &1094417449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8072624733217195647, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1094417450 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1174883773899948515, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1094417453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094417449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481e0c9c54bbdbc44832c2448400c6d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  arrowPrefab: {fileID: 3331382715811908638, guid: 6444be34503a9ce48901ec606172fa60, type: 3}
-  firePoint: {fileID: 1094417450}
 --- !u!1 &1115324571
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,31 +4246,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455895633}
   m_CullTransparentMesh: 1
---- !u!1 &1466585956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3994907117428782186, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1466585957 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2144844957058324514, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-  m_PrefabInstance: {fileID: 4491755809392437556}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1466585960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466585956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2386cca7ec1d07147a58724f3ad468c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  fireballPrefab: {fileID: 4049416602995518726, guid: be724b2faa2b71c4bbd4f5e09a7dcacc, type: 3}
-  firePoint: {fileID: 1466585957}
 --- !u!1 &1532864256
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,10 +4858,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1936354094396189662, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-      propertyPath: firePoint
-      value: 
-      objectReference: {fileID: 1466585957}
     - target: {fileID: 4146872123068882572, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4920,18 +4866,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1031616111}
-    m_RemovedComponents:
-    - {fileID: 1936354094396189662, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-    - {fileID: 410144504576003462, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8072624733217195647, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1094417453}
-    - targetCorrespondingSourceObject: {fileID: 3994907117428782186, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1466585960}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df9049357cb4c748abf6d169c6a989e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
