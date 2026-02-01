@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MaskCheck : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MaskCheck : MonoBehaviour
 
     public GameObject victoryRoot;
     public GameObject fullMaskVisual;
+
+    public string endSceneName;
 
     void Awake()
     {
@@ -41,9 +44,7 @@ public class MaskCheck : MonoBehaviour
 
         if (piece1 && piece2)
         {
-            if (victoryRoot != null) victoryRoot.SetActive(true);
-            if (fullMaskVisual != null) fullMaskVisual.SetActive(true);
-            Time.timeScale = 0f;
+            SceneManager.LoadScene(endSceneName);
         }
 
     }
