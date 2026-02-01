@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3331382715811908638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &6761502320700531089
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ CapsuleCollider:
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 1.0874435
-  m_Direction: 1
+  m_Direction: 0
   m_Center: {x: 0.000000059604645, y: 0.45627826, z: -0.00000011920929}
 --- !u!54 &-180908457683177622
 Rigidbody:
@@ -137,7 +137,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-2061099051465572760
 MonoBehaviour:
@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lifetime: 3
+  lifetime: 2.5
   damage: 25

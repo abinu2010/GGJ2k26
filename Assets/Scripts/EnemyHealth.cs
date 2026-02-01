@@ -43,16 +43,21 @@ public class EnemyHealth : MonoBehaviour
             {
                 Debug.Log(name + " died");
             }
+            Destroy(gameObject);
+        }
+    }
 
+    void OnDestroy()
+    {
+        if (dead && maskPieceDrop != null)
+        {
             if (KnowledgeManager.Instance != null && !GameManager.Instance.knowledgeCheckPerformed)
             {
-                KnowledgeManager.Instance.ShowKnowledgeCheck(maskPieceDrop, gameObject);
-                gameObject.SetActive(false); // Disable the enemy instead of destroying it
+                KnowledgeManager.Instance.ShowKnowledgeCheck(maskPieceDrop, null);
             }
             else
             {
-                if (maskPieceDrop != null) maskPieceDrop.Drop();
-                Destroy(gameObject);
+                maskPieceDrop.Drop();
             }
         }
     }

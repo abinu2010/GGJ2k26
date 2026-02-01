@@ -4,7 +4,7 @@ using System.Collections;
 public class Sword : Weapon
 {
     public Collider swordCollider;
-    public float attackDuration = 0.2f;
+    public float attackDuration = 0.6f;
 
     public bool logHits = true;
 

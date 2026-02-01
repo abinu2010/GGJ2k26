@@ -22,8 +22,18 @@ public class KnowledgeManager : MonoBehaviour
 
     public void ShowKnowledgeCheck(MaskPieceDrop dropper, GameObject enemy)
     {
+        if (knowledgePanel == null)
+        {
+            Debug.LogError("KnowledgePanel is not assigned in the KnowledgeManager.");
+            return;
+        }
+
+        if (dropper == null)
+        {
+            Debug.LogWarning("MaskPieceDrop component is null. Cannot perform knowledge check.");
+        }
+
         maskPieceDropper = dropper;
-        enemyToDestroy = enemy;
         knowledgePanel.SetActive(true);
         Time.timeScale = 0;
     }
@@ -39,11 +49,13 @@ public class KnowledgeManager : MonoBehaviour
             maskPieceDropper = null;
         }
 
-        if (enemyToDestroy != null)
+        if (GameManager.Instance != null)
         {
-            Destroy(enemyToDestroy);
+            GameManager.Instance.PerformKnowledgeCheck();
         }
-
-        GameManager.Instance.PerformKnowledgeCheck();
+        else
+        {
+            Debug.LogError("GameManager.Instance is null. Cannot perform knowledge check.");
+        }
     }
 }

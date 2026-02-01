@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  attackCooldown: 0.5
+  nextAttackTime: 0
   fireballPrefab: {fileID: 4049416602995518726, guid: be724b2faa2b71c4bbd4f5e09a7dcacc, type: 3}
   firePoint: {fileID: 2144844957058324514}
 --- !u!1 &4146872123068882572
@@ -425,6 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  attackCooldown: 0.5
+  nextAttackTime: 0
   arrowPrefab: {fileID: 3331382715811908638, guid: 6444be34503a9ce48901ec606172fa60, type: 3}
   firePoint: {fileID: 1174883773899948515}
 --- !u!1 &8301163989806440965
@@ -485,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.64278764
+      value: 0.8433915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalRotation.x
@@ -493,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.76604444
+      value: 0.53729963
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalRotation.z
@@ -505,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 100
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 525035ef4c72ddb4f8eae598de687c79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -741,6 +745,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6096782491894667534, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -825,6 +833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
+  attackCooldown: 0.5
+  nextAttackTime: 0
   swordCollider: {fileID: 62393213542161401}
   attackDuration: 0.2
   logHits: 1
@@ -843,7 +853,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

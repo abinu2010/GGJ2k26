@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector3 direction)
     {
         _direction = direction.normalized;
+        _direction.z = 0; // Ensure no Z-axis movement
     }
 
     void Start()
@@ -20,6 +21,7 @@ public class Projectile : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = _direction * speed;
+            rb.freezeRotation = true;
         }
         else
         {
