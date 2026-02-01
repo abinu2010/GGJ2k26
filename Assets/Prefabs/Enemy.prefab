@@ -70,12 +70,13 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 9
-  engageRange: 5
-  hitRadius: 3
+  engageRange: 1
+  hitRadius: 1.03
   holdDistanceFromPlayer: 1.4
-  holdTolerance: 0.25
-  damage: 5
-  cooldown: 4
+  holdTolerance: 1
+  damage: 10
+  cooldown: 0.9
+  attackAnimationDuration: 0.5
 --- !u!114 &5932484732966179343
 MonoBehaviour:
   m_ObjectHideFlags: 0
