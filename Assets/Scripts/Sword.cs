@@ -58,14 +58,15 @@ public class Sword : Weapon
 
     void OnTriggerEnter(Collider other)
     {
-        if (swordCollider == null) return;
-        if (!swordCollider.enabled) return;
+        if (swordCollider == null || !swordCollider.enabled) return;
 
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
+
+        // Only proceed if we found an EnemyHealth component
         if (enemyHealth != null)
         {
             float finalDamage = GetDamage();
-            if (logHits) Debug.Log("Sword hit: " + other.name + " damage=" + finalDamage);
+            if (logHits) Debug.Log("Sword hit: " + other.name + " (" + enemyHealth.name + ") with damage=" + finalDamage);
             enemyHealth.AddDamage(finalDamage);
         }
     }

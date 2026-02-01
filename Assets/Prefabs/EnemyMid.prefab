@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6618ec5d9437a094bbcaea9646e0399d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiType: 1
   target: {fileID: 0}
   rb: {fileID: 4815808547681233409}
   moveSpeed: 3
@@ -121,7 +122,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 30
   dead: 0
-  logDamage: 0
+  logDamage: 1
 --- !u!114 &5711361398573018502
 MonoBehaviour:
   m_ObjectHideFlags: 0

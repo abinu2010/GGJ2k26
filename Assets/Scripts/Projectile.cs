@@ -34,10 +34,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(gameObject.name + " collided with " + other.name);
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
+            Debug.Log(gameObject.name + " is applying " + damage + " damage to " + other.name);
             enemyHealth.AddDamage(damage);
+        }
+        else
+        {
+            Debug.Log("No EnemyHealth component found on " + other.name);
         }
         Destroy(gameObject);
     }

@@ -67,6 +67,7 @@ public class EnemyAttack : MonoBehaviour
     // This function will be called by an animation event
     public void Hit()
     {
+        Debug.Log(name + " Hit() called by animation event.");
         float hitPosX = hitPoint != null ? hitPoint.position.x : transform.position.x;
         float hitPosY = hitPoint != null ? hitPoint.position.y : transform.position.y;
         float hitPosZ = hitPoint != null ? hitPoint.position.z : transform.position.z;
@@ -74,16 +75,23 @@ public class EnemyAttack : MonoBehaviour
         Vector3 hitPosition = new Vector3(hitPosX, hitPosY, hitPosZ);
 
         Collider[] hitColliders = Physics.OverlapSphere(hitPosition, Mathf.Max(0f, hitRadius), playerLayer);
+        Debug.Log(name + " found " + hitColliders.Length + " colliders in range.");
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i] == null) continue;
 
+            Debug.Log(name + " hit collider: " + hitColliders[i].name);
             Health health = hitColliders[i].GetComponentInParent<Health>();
             if (health != null)
             {
+                Debug.Log(name + " applying " + damage + " damage to " + hitColliders[i].name);
                 health.addDamage(damage);
                 return;
+            }
+            else
+            {
+                Debug.Log(name + " could not find Health component on " + hitColliders[i].name);
             }
         }
     }

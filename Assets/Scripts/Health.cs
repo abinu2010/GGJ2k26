@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     public void addDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log(gameObject.name + " took " + damage + " damage. Current health: " + currentHealth);
         if (currentHealth <= 0)
         {
             isDead();

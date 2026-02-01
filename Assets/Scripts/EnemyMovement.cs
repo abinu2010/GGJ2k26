@@ -1,7 +1,15 @@
 using UnityEngine;
 
+public enum AIType
+{
+    Melee,
+    Ranged
+}
+
 public class EnemyMovement : MonoBehaviour
 {
+    public AIType aiType = AIType.Melee;
+
     public Transform target;
     public Rigidbody rb;
 
@@ -16,36 +24,38 @@ public class EnemyMovement : MonoBehaviour
     EnemyAttack enemyAttack;
     Animator animator;
 
+    RigidbodyConstraints baseConstraints;
+
     void Awake()
     {
-        if (target == null)
-        {
-            target = GameObject.FindGameObjectWithTag("Player")?.transform;
-            if (target == null)
-            {
-                Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
-            }
-        }
         if (rb == null) rb = GetComponent<Rigidbody>();
+
+        if (rb != null) baseConstraints = rb.constraints;
+
         fixedPosZ = transform.position.z;
 
         enemyFireSpit = GetComponent<EnemyFireSpit>();
         enemyAttack = GetComponent<EnemyAttack>();
         animator = GetComponent<Animator>();
+
+        if (target == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null) target = playerObj.transform;
+        }
     }
 
     void FixedUpdate()
     {
-        if (target == null) return;
-        if (rb == null) return;
-
-        // Halt all horizontal movement if the enemy is in the middle of an attack animation.
-        if (animator != null && animator.GetBool("isAttacking"))
+        if (target == null)
         {
-            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            // Player is dead, stop all movement and disable this script.
+            if (rb != null) rb.linearVelocity = Vector3.zero;
             if (animator != null) animator.SetBool("isWalking", false);
+            this.enabled = false;
             return;
         }
+        if (rb == null) return;
 
         float posX = rb.position.x;
         float posY = rb.position.y;
@@ -62,49 +72,53 @@ public class EnemyMovement : MonoBehaviour
         float stopTolerance;
         GetStopBand(out stopDistanceFromPlayer, out stopTolerance);
 
-        float minStopDistance = Mathf.Max(0f, stopDistanceFromPlayer - stopTolerance);
-        float maxStopDistance = Mathf.Max(minStopDistance, stopDistanceFromPlayer + stopTolerance);
-
-        if(animator != null)
-        {
-            Debug.Log("Distance: " + absHorizontalDistanceToTarget + " | MaxStop: " + maxStopDistance + " | isAttacking: " + animator.GetBool("isAttacking"));
-        }
+        float maxStopDistance = stopDistanceFromPlayer + stopTolerance;
 
         float verticalVelocity = rb.linearVelocity.y;
 
-        if (absHorizontalDistanceToTarget <= maxStopDistance)
+        bool shouldHoldPosition = absHorizontalDistanceToTarget <= maxStopDistance;
+
+        if (animator != null && animator.GetBool("isAttacking"))
         {
-            rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
-            FaceTarget(horizontalDistanceToTarget);
-            if (animator != null) animator.SetBool("isWalking", false);
-            return;
+            shouldHoldPosition = true;
         }
 
-        float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
-        rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
-        if (animator != null) animator.SetBool("isWalking", true);
+        if (shouldHoldPosition)
+        {
+            rb.constraints = baseConstraints | RigidbodyConstraints.FreezePositionX;
+            rb.linearVelocity = new Vector3(0f, verticalVelocity, 0f);
+            if (animator != null) animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            rb.constraints = baseConstraints & ~RigidbodyConstraints.FreezePositionX;
+
+            float moveDirection = Mathf.Sign(horizontalDistanceToTarget);
+            rb.linearVelocity = new Vector3(moveDirection * moveSpeed, verticalVelocity, 0f);
+            if (animator != null) animator.SetBool("isWalking", true);
+        }
 
         FaceTarget(horizontalDistanceToTarget);
     }
 
     void GetStopBand(out float stopDistanceFromPlayer, out float stopTolerance)
     {
-        if (enemyFireSpit != null && enemyFireSpit.enabled)
+        if (aiType == AIType.Melee && enemyAttack != null)
         {
-            stopDistanceFromPlayer = Mathf.Max(0f, enemyFireSpit.stopDistanceFromPlayer);
-            stopTolerance = Mathf.Max(0f, enemyFireSpit.stopTolerance);
+            stopDistanceFromPlayer = enemyAttack.holdDistanceFromPlayer;
+            stopTolerance = enemyAttack.holdTolerance;
             return;
         }
 
-        if (enemyAttack != null && enemyAttack.enabled)
+        if (aiType == AIType.Ranged && enemyFireSpit != null)
         {
-            stopDistanceFromPlayer = Mathf.Max(0f, enemyAttack.holdDistanceFromPlayer);
-            stopTolerance = Mathf.Max(0f, enemyAttack.holdTolerance);
+            stopDistanceFromPlayer = enemyFireSpit.stopDistanceFromPlayer;
+            stopTolerance = enemyFireSpit.stopTolerance;
             return;
         }
 
-        stopDistanceFromPlayer = Mathf.Max(0f, fallbackStopDistance);
-        stopTolerance = Mathf.Max(0f, fallbackStopTolerance);
+        stopDistanceFromPlayer = fallbackStopDistance;
+        stopTolerance = fallbackStopTolerance;
     }
 
     void FaceTarget(float horizontalDistanceToTarget)
