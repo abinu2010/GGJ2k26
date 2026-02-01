@@ -8,6 +8,9 @@ public class EnemyHealth : MonoBehaviour
 
     public bool logDamage = true;
 
+    public Transform dmgPoint;
+    public GameObject blood;
+
     MaskPieceDrop maskPieceDrop;
 
     void Awake()
@@ -29,6 +32,15 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth -= damage;
         if (currentHealth < 0f) currentHealth = 0f;
+
+        //blood effect
+        if (blood != null)
+        {
+            Vector3 pos = dmgPoint != null ? dmgPoint.position : transform.position;
+            Quaternion rot = dmgPoint != null ? dmgPoint.rotation : Quaternion.identity;
+            GameObject fx = Instantiate(blood, pos, rot);
+            Destroy(fx, 2f);
+        }
 
         if (logDamage)
         {
