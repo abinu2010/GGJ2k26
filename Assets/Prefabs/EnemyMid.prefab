@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26aeb4531c846254087ff6ba6bceeb5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  currentHealth: 30
+  maxHealth: 100
+  currentHealth: 100
   dead: 0
   logDamage: 1
 --- !u!114 &5711361398573018502
@@ -158,7 +158,7 @@ MonoBehaviour:
   stopDistanceFromPlayer: 4.5
   stopTolerance: 0.25
   projectileSpeed: 10
-  projectileDamage: 30
+  projectileDamage: 10
   projectileLifeTime: 2.5
   projectileHitLayers:
     serializedVersion: 2
