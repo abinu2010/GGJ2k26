@@ -51,6 +51,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (animator != null)
         {
+            animator.ResetTrigger("attack");
             animator.SetTrigger("attack");
             StartCoroutine(AttackCoroutine()); // Start coroutine to manage "isAttacking" bool
         }
