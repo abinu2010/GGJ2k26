@@ -39,6 +39,14 @@ public class EnemyMovement : MonoBehaviour
         if (target == null) return;
         if (rb == null) return;
 
+        // Halt all horizontal movement if the enemy is in the middle of an attack animation.
+        if (animator != null && animator.GetBool("isAttacking"))
+        {
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            if (animator != null) animator.SetBool("isWalking", false);
+            return;
+        }
+
         float posX = rb.position.x;
         float posY = rb.position.y;
         float posZ = fixedPosZ;
@@ -56,6 +64,11 @@ public class EnemyMovement : MonoBehaviour
 
         float minStopDistance = Mathf.Max(0f, stopDistanceFromPlayer - stopTolerance);
         float maxStopDistance = Mathf.Max(minStopDistance, stopDistanceFromPlayer + stopTolerance);
+
+        if(animator != null)
+        {
+            Debug.Log("Distance: " + absHorizontalDistanceToTarget + " | MaxStop: " + maxStopDistance + " | isAttacking: " + animator.GetBool("isAttacking"));
+        }
 
         float verticalVelocity = rb.linearVelocity.y;
 

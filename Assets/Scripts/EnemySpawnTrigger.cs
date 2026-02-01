@@ -1,103 +1,97 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SpawnInfo
+{
+    public GameObject enemyPrefab;
+    public Transform spawnPoint;
+}
+
 public class EnemySpawnTrigger : MonoBehaviour
 {
     public Transform player;
-    public Transform spawnPoint;
+    public List<SpawnInfo> spawners = new List<SpawnInfo>();
 
-    public GameObject[] enemyPrefabs;
-
-    public int totalToSpawn = 8;
-    public float timeBetweenSpawns = 0.7f;
+    // This will enforce one-by-one spawning. Set to 1 in the Inspector.
     public int maxAliveAtOnce = 1;
+    public float timeBetweenSpawns = 0.7f;
 
-    public float minPlayerDistanceToSpawn = 5f;
-    public float spawnOffsetX = 0.35f;
+    private bool started;
+    private bool finished;
 
-    bool started;
-    bool finished;
+    private int spawnedCount;
+    private float nextSpawnTime;
 
-    int spawnedCount;
-    float nextSpawnTime;
-
-    readonly List<GameObject> aliveEnemies = new List<GameObject>();
+    private readonly List<GameObject> aliveEnemies = new List<GameObject>();
 
     void OnTriggerEnter(Collider other)
     {
-        if (finished) return;
-        if (started) return;
+        if (finished || started) return;
 
-        Health health = other.GetComponentInParent<Health>();
-        if (health == null) return;
-
-        if (player == null) player = health.transform;
-
-        started = true;
-        nextSpawnTime = Time.time;
+        // The trigger starts when the player enters the volume
+        if (other.CompareTag("Player"))
+        {
+            if (player == null) player = other.transform;
+            started = true;
+            nextSpawnTime = Time.time;
+            Debug.Log("Spawn trigger sequence initiated.");
+        }
     }
 
     void Update()
     {
-        if (!started) return;
-        if (finished) return;
+        if (!started || finished) return;
 
-        CleanupDead();
+        CleanupDeadEnemies();
 
-        if (spawnedCount >= totalToSpawn)
+        // If all enemies from the configured spawners have been spawned...
+        if (spawnedCount >= spawners.Count)
         {
+            // ...and all of them are now dead, the sequence is complete.
             if (aliveEnemies.Count == 0)
             {
+                Debug.Log("All spawned enemies defeated. Sequence complete.");
                 finished = true;
-                gameObject.SetActive(false);
+                // You can uncomment the line below to disable the trigger object when finished
+                // gameObject.SetActive(false);
             }
             return;
         }
 
         if (Time.time < nextSpawnTime) return;
 
-        if (maxAliveAtOnce > 0 && aliveEnemies.Count >= maxAliveAtOnce)
+        // Only spawn if the number of alive enemies is less than the max allowed
+        if (aliveEnemies.Count >= maxAliveAtOnce)
         {
-            nextSpawnTime = Time.time + 0.1f;
+            nextSpawnTime = Time.time + 0.1f; // Short delay to re-check soon
             return;
         }
 
-        if (player == null) return;
-        if (spawnPoint == null) return;
-        if (enemyPrefabs == null) return;
-        if (enemyPrefabs.Length == 0) return;
-
-        float playerPosX = player.position.x;
-        float spawnPosX = spawnPoint.position.x;
-
-        float absDistance = Mathf.Abs(playerPosX - spawnPosX);
-        if (absDistance < minPlayerDistanceToSpawn)
-        {
-            nextSpawnTime = Time.time + 0.1f;
-            return;
-        }
-
-        SpawnOne();
+        // If we've passed all checks, spawn the next enemy in the sequence
+        SpawnNextEnemy();
 
         spawnedCount++;
         nextSpawnTime = Time.time + timeBetweenSpawns;
     }
 
-    void SpawnOne()
+    void SpawnNextEnemy()
     {
-        int prefabIndex = spawnedCount % enemyPrefabs.Length;
-        GameObject prefab = enemyPrefabs[prefabIndex];
-        if (prefab == null) return;
+        if (spawnedCount >= spawners.Count) return;
 
-        float posX = spawnPoint.position.x;
-        float posY = spawnPoint.position.y;
-        float posZ = spawnPoint.position.z;
+        SpawnInfo currentSpawn = spawners[spawnedCount];
+        if (currentSpawn.enemyPrefab == null || currentSpawn.spawnPoint == null)
+        {
+            Debug.LogError($"Spawner #{spawnedCount} in the list is not configured correctly (missing prefab or spawn point).");
+            return;
+        }
 
-        float offsetX = Random.Range(-spawnOffsetX, spawnOffsetX);
+        Debug.Log($"Spawning enemy #{spawnedCount + 1} ({currentSpawn.enemyPrefab.name}) at {currentSpawn.spawnPoint.name}.");
 
-        GameObject enemyObj = Instantiate(prefab, new Vector3(posX + offsetX, posY, posZ), spawnPoint.rotation);
+        GameObject enemyObj = Instantiate(currentSpawn.enemyPrefab, currentSpawn.spawnPoint.position, currentSpawn.spawnPoint.rotation);
         aliveEnemies.Add(enemyObj);
 
+        // This part finds the correct enemy script (Attack, FireSpit, etc.) and assigns the player as its target.
         EnemyMovement enemyMovement = enemyObj.GetComponent<EnemyMovement>();
         if (enemyMovement != null) enemyMovement.target = player;
 
@@ -108,11 +102,16 @@ public class EnemySpawnTrigger : MonoBehaviour
         if (enemyFireSpit != null) enemyFireSpit.target = player;
     }
 
-    void CleanupDead()
+    void CleanupDeadEnemies()
     {
+        // This loop checks for and removes defeated (destroyed) enemies from our tracking list.
         for (int i = aliveEnemies.Count - 1; i >= 0; i--)
         {
-            if (aliveEnemies[i] == null) aliveEnemies.RemoveAt(i);
+            if (aliveEnemies[i] == null)
+            {
+                aliveEnemies.RemoveAt(i);
+                Debug.Log("An enemy was defeated. The next one can now be spawned.");
+            }
         }
     }
 }

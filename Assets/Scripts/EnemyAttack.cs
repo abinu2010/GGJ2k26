@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour
     public float engageRange = 1.5f;
     public float hitRadius = 0.6f;
 
-    public float holdDistanceFromPlayer = 1.4f;
+    public float holdDistanceFromPlayer = 1.0f;
     public float holdTolerance = 0.25f;
 
     public float damage = 10f;
