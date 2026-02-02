@@ -2848,6 +2848,7 @@ MonoBehaviour:
   piece2: 0
   victoryRoot: {fileID: 0}
   fullMaskVisual: {fileID: 0}
+  endSceneName: EndScene
 --- !u!4 &1361133294
 Transform:
   m_ObjectHideFlags: 0
@@ -3339,6 +3340,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 324046567109055783, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2106182342}
+    - target: {fileID: 324046567109055783, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAgilityButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209269082036443843, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2106182342}
+    - target: {fileID: 1209269082036443843, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnStrengthButtonClicked
+      objectReference: {fileID: 0}
     - target: {fileID: 1533918895513891334, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3491,6 +3508,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2986499673344798176, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3107487521460478378, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3563,6 +3584,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2106182342}
+    - target: {fileID: 6942795051743444871, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2106182342}
+    - target: {fileID: 6942795051743444871, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnIntelligenceButtonClicked
+      objectReference: {fileID: 0}
     - target: {fileID: 7124311848734587775, guid: 1c4dcc89e431ec44d81a3869abc9f63a, type: 3}
       propertyPath: weaponManager
       value: 
