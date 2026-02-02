@@ -46,12 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872d23024145a4a07a79df1f91604567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 7052404157623717847}
-  sfxSource: {fileID: 8864451108271443168}
+  crossBowHit: {fileID: 8300000, guid: a9c35116dce174cda9b67d7b9d47f89d, type: 3}
+  enemyHit: {fileID: 8300000, guid: bb5e55198447245c487c370f92e74276, type: 3}
+  footsteps: {fileID: 8300000, guid: 43cfa543866224f0fafe9cf753f14e93, type: 3}
+  inGameMusic: {fileID: 8300000, guid: 07ecb93b1c79b4b10991c6e5d58e08c3, type: 3}
+  magicHit: {fileID: 8300000, guid: 216101219ba884de1ab31e6b9639dd63, type: 3}
+  maskFound: {fileID: 8300000, guid: da5e2404dcd164358895e33b22bc6d1b, type: 3}
+  swordHit: {fileID: 8300000, guid: 1c7d3899d749f46acbae2e6e8cbd01e8, type: 3}
+  uiButton: {fileID: 8300000, guid: 0cd3d061593e948089e64aa7fc536d4b, type: 3}
   menuMusic: {fileID: 8300000, guid: 1c7d3899d749f46acbae2e6e8cbd01e8, type: 3}
-  ingameMusic: {fileID: 8300000, guid: 07ecb93b1c79b4b10991c6e5d58e08c3, type: 3}
-  maskFoundSFX: {fileID: 8300000, guid: da5e2404dcd164358895e33b22bc6d1b, type: 3}
-  buttonClickSFX: {fileID: 8300000, guid: 71ad22b8112bb495fb31bb4f6893f8bc, type: 3}
 --- !u!82 &7052404157623717847
 AudioSource:
   m_ObjectHideFlags: 0

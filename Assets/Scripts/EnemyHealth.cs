@@ -60,17 +60,15 @@ public class EnemyHealth : MonoBehaviour
             {
                 Debug.Log(name + " died");
             }
-            if (maskPieceDrop != null)
+            MaskPieceDrop drop = GetComponent<MaskPieceDrop>();
+            if (drop != null)
             {
-                maskPieceDrop.Drop();
+                drop.HandleEnemyDefeated(gameObject);
+                return;
             }
 
             Destroy(gameObject);
         }
     }
 
-    void OnDestroy()
-    {
-
-    }
 }

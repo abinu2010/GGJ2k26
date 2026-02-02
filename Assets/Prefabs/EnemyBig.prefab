@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupPrefab: {fileID: 7017621708168996992, guid: feb72316cc2415e448bf49097a5ddaaf, type: 3}
-  pieceId: 1
+  pieceId: 2
   offset: {x: 4, y: 1, z: 0}
+  requireKnowledgeChoice: 0
 --- !u!114 &4687562865480168941
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2386cca7ec1d07147a58724f3ad468c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 15
   attackCooldown: 0.5
   nextAttackTime: 0
   fireballPrefab: {fileID: 4049416602995518726, guid: be724b2faa2b71c4bbd4f5e09a7dcacc, type: 3}
@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 1208584911001519868}
   - component: {fileID: 1398951892738080019}
   - component: {fileID: 2194644725506414484}
+  - component: {fileID: 4205479049104558535}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -295,6 +296,103 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &4205479049104558535
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146872123068882572}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6443232206697458448
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481e0c9c54bbdbc44832c2448400c6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 15
   attackCooldown: 0.5
   nextAttackTime: 0
   arrowPrefab: {fileID: 3331382715811908638, guid: 6444be34503a9ce48901ec606172fa60, type: 3}
@@ -787,6 +885,22 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7182977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0011452405
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Center.y
+      value: 0.00000045227003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+      propertyPath: m_Center.z
+      value: 0.27323797
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -842,10 +956,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5218330369687324717, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1202714240908568097}
-    - targetCorrespondingSourceObject: {fileID: 5218330369687324717, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 62393213542161401}
   m_SourcePrefab: {fileID: 100100000, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+--- !u!65 &2558112030621511346 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5815295607602309296, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
+  m_PrefabInstance: {fileID: 8301306046540891650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2857593896444927756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6096782491894667534, guid: f89a85ee25ab0274c975db22ae703584, type: 3}
@@ -873,30 +989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89298ed2128957a4884ec8895c77a9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 15
   attackCooldown: 0.5
   nextAttackTime: 0
-  swordCollider: {fileID: 62393213542161401}
-  attackDuration: 0.2
+  swordCollider: {fileID: 2558112030621511346}
+  attackDuration: 0.8
   logHits: 1
---- !u!65 &62393213542161401
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4278158027699768879}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0626216, y: 0.3109402, z: 1.0082177}
-  m_Center: {x: -0.0011454369, y: 0.000000024943688, z: 0.41819993}

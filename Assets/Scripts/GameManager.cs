@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public float wandDamageBonus = 0f;
     public float swordDamageBonus = 0f;
     public float bowDamageBonus = 0f;
-    public bool knowledgeCheckPerformed = false;
+
+    public int knowledgeChecksCompleted = 0;
 
     private void Awake()
     {
@@ -15,11 +16,10 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Destroy(gameObject);
     }
 
     public void IncreaseWandDamage()
@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
         bowDamageBonus += 25f;
     }
 
-    public void PerformKnowledgeCheck()
+    public void MarkKnowledgeCheckCompleted()
     {
-        knowledgeCheckPerformed = true;
+        knowledgeChecksCompleted += 1;
     }
 }
