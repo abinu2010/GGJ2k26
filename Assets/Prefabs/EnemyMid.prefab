@@ -160,7 +160,7 @@ MonoBehaviour:
   stopDistanceFromPlayer: 4.5
   stopTolerance: 0.25
   projectileSpeed: 10
-  projectileDamage: 10
+  projectileDamage: 1
   projectileLifeTime: 2.5
   projectileHitLayers:
     serializedVersion: 2
