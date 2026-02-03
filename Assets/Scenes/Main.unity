@@ -4943,6 +4943,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4732479355335668813, guid: e88a1bbe42b93481db09d5dde2a1037e, type: 3}
+      propertyPath: swordHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cd3d061593e948089e64aa7fc536d4b, type: 3}
+    - target: {fileID: 4732479355335668813, guid: e88a1bbe42b93481db09d5dde2a1037e, type: 3}
+      propertyPath: uiButton
+      value: 
+      objectReference: {fileID: 8300000, guid: 71ad22b8112bb495fb31bb4f6893f8bc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
